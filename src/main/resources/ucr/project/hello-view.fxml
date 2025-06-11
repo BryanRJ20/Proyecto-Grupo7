@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HelloController">
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
    <left>
       <VBox prefHeight="800.0" prefWidth="280.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%);" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#Home" prefHeight="72.0" prefWidth="287.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Home">
+            <Button mnemonicParsing="false" onAction="#Home" prefHeight="72.0" prefWidth="287.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Menu">
                <font>
                   <Font name="Serif Italic" size="39.0" />
                </font>
@@ -36,7 +37,7 @@
                   </RadialGradient>
                </textFill>
             </Button>
-            <Button mnemonicParsing="false" onAction="#matrixGraphView" prefHeight="62.0" prefWidth="301.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Matrix Graph">
+            <Button layoutX="10.0" layoutY="370.0" mnemonicParsing="false" onAction="#airports" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Airports">
                <font>
                   <Font name="Serif Italic" size="39.0" />
                </font>
@@ -57,7 +58,7 @@
                   </RadialGradient>
                </textFill>
             </Button>
-            <Button mnemonicParsing="false" onAction="#listGraph" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="List Graph">
+            <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#passengers" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Passengers">
                <font>
                   <Font name="Serif Italic" size="39.0" />
                </font>
@@ -78,7 +79,7 @@
                   </RadialGradient>
                </textFill>
             </Button>
-            <Button mnemonicParsing="false" onAction="#linkedGraph" prefHeight="72.0" prefWidth="297.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Linked Graph">
+            <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#flights" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Flights">
                <font>
                   <Font name="Serif Italic" size="39.0" />
                </font>
@@ -99,7 +100,7 @@
                   </RadialGradient>
                </textFill>
             </Button>
-            <Button mnemonicParsing="false" onAction="#matrixOperations" prefHeight="72.0" prefWidth="294.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Matrix Operations">
+            <Button layoutX="10.0" layoutY="226.0" mnemonicParsing="false" onAction="#simulation" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Simulation">
                <font>
                   <Font name="Serif Italic" size="39.0" />
                </font>
@@ -120,7 +121,7 @@
                   </RadialGradient>
                </textFill>
             </Button>
-            <Button layoutX="10.0" layoutY="154.0" mnemonicParsing="false" onAction="#listOperations" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="List Operations">
+            <Button layoutX="10.0" layoutY="226.0" mnemonicParsing="false" onAction="#statistics" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Statistics">
                <font>
                   <Font name="Serif Italic" size="39.0" />
                </font>
@@ -141,28 +142,7 @@
                   </RadialGradient>
                </textFill>
             </Button>
-            <Button layoutX="10.0" layoutY="370.0" mnemonicParsing="false" onAction="#linkedOperations" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Linked Operations">
-               <font>
-                  <Font name="Serif Italic" size="39.0" />
-               </font>
-               <textFill>
-                  <RadialGradient centerX="0.5165745856353591" centerY="0.5" radius="0.7873563218390804">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.5263158082962036" green="0.5263158082962036" blue="0.5263158082962036" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </RadialGradient>
-               </textFill>
-            </Button>
-            <Button layoutX="10.0" layoutY="442.0" mnemonicParsing="false" onAction="#exit" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Exit">
+            <Button layoutX="10.0" layoutY="442.0" mnemonicParsing="false" onAction="#exit" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Log out">
                <font>
                   <Font name="Serif Italic" size="39.0" />
                </font>
@@ -187,45 +167,103 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="ap" prefHeight="850.0" prefWidth="1300.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%);" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="ap" prefHeight="850.0" prefWidth="0.0" BorderPane.alignment="CENTER">
          <children>
-            <Text fx:id="txtMessage" layoutX="119.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laboratory No. 11" textAlignment="CENTER" wrappingWidth="781.94921875">
+            <ImageView fitHeight="857.0" fitWidth="1025.0" layoutX="3.0" pickOnBounds="true">
+               <image>
+                  <Image url="@imagen%201.jpeg" />
+               </image>
+            </ImageView>
+            <Label layoutX="128.0" layoutY="26.0" prefHeight="92.0" prefWidth="773.0" text="Welcome Username!" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Serif Italic" size="70.0" />
+                  <Font name="Serif Bold" size="43.0" />
                </font>
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.5260721445083618" green="0.6059494614601135" blue="0.8947368264198303" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Text>
-            <Text fill="WHITE" layoutX="30.0" layoutY="653.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Alejandro Porras Orozco C26030">
+            </Label>
+            <ImageView fitHeight="661.0" fitWidth="988.0" layoutX="31.0" layoutY="118.0" opacity="0.32" pickOnBounds="true">
+               <image>
+                  <Image url="@imagen%202.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="77.0" layoutY="145.0" prefHeight="63.0" prefWidth="683.0" text="Welcome to theAirport and Flight Route Management System" textFill="WHITE">
                <font>
-                  <Font name="Serif Bold" size="16.0" />
+                  <Font name="Serif Regular" size="22.0" />
                </font>
-            </Text>
-            <Text fill="WHITE" layoutX="30.0" layoutY="682.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Bryan Rojas Jiménez C36900">
+            </Label>
+            <Label layoutX="77.0" layoutY="202.0" prefHeight="63.0" prefWidth="601.0" text="Please select one of the following options from the main menu:" textFill="WHITE">
                <font>
-                  <Font name="Serif Bold" size="16.0" />
+                  <Font name="Serif Regular" size="22.0" />
                </font>
-            </Text>
-            <Text fill="WHITE" layoutX="30.0" layoutY="714.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Caleb Hernández C23811">
+            </Label>
+            <Label layoutX="140.0" layoutY="265.0" prefHeight="63.0" prefWidth="476.0" text="Airports" textFill="WHITE">
                <font>
-                  <Font name="Serif Bold" size="16.0" />
+                  <Font name="Serif Regular" size="22.0" />
                </font>
-            </Text>
-         </children>
-      </AnchorPane>
+            </Label>
+            <ImageView fitHeight="42.0" fitWidth="37.0" layoutX="91.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@iconAirport.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="91.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@iconsPassenger.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="140.0" layoutY="318.0" prefHeight="63.0" prefWidth="476.0" text="Passengers" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="91.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@iconFlights.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="140.0" layoutY="375.0" prefHeight="63.0" prefWidth="476.0" text="Flights" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="91.0" layoutY="445.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@iconAirplane.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="140.0" layoutY="429.0" prefHeight="63.0" prefWidth="476.0" text="Simulation" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="91.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@iconStats.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="140.0" layoutY="486.0" prefHeight="63.0" prefWidth="476.0" text="Statistics" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="91.0" layoutY="586.0" prefHeight="63.0" prefWidth="256.0" text="Project carried out by:" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="91.0" layoutY="691.0" prefHeight="63.0" prefWidth="275.0" text="• Caleb Hernández C23811" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="91.0" layoutY="660.0" prefHeight="63.0" prefWidth="275.0" text="• Alejandro Porras Orozco C26030" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="91.0" layoutY="629.0" prefHeight="63.0" prefWidth="275.0" text="• Bryan Rojas Jiménez C36900" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="17.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
    </center>
 </BorderPane>
