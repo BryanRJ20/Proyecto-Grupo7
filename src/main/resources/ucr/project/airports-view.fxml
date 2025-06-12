@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="850.0" prefWidth="1032.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AirportController">
+   <children>
+      <Pane fx:id="mainPain" prefHeight="868.0" prefWidth="1032.0">
+         <children>
+            <Pane layoutX="1.0" layoutY="80.0" prefHeight="789.0" prefWidth="1032.0" style="-fx-background-color: radial-gradient(focus-angle 0.0deg, focus-distance 11.4943% , center 50.0% 50.0%, radius 59.1954%, #ffffff 0.0%, #8f99b5 100.0%);">
+               <children>
+                  <TableView fx:id="tvAirport" layoutX="146.0" layoutY="28.0" prefHeight="345.0" prefWidth="741.0">
+                    <columns>
+                      <TableColumn prefWidth="107.0" text="Code" />
+                      <TableColumn prefWidth="293.0" text="Name" />
+                        <TableColumn prefWidth="187.0" text="Country" />
+                        <TableColumn minWidth="0.0" prefWidth="153.0" text="Status" />
+                    </columns>
+                  </TableView>
+                  <Pane layoutX="-2.0" layoutY="439.0" prefHeight="125.0" prefWidth="1038.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%);">
+                     <children>
+                        <Text layoutX="145.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code" textAlignment="CENTER" wrappingWidth="82.0">
+                           <font>
+                              <Font name="Serif Regular" size="30.0" />
+                           </font>
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.5260721445083618" green="0.6059494614601135" blue="0.8947368264198303" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.14939024390243902">
+                                       <color>
+                                          <Color red="0.9700000286102295" green="0.9700000286102295" blue="0.9700000286102295" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.6280487804878049">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.6310975609756098">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.9725490212440491" green="0.9725490212440491" blue="0.9725490212440491" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Text>
+                        <Text layoutX="440.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" textAlignment="CENTER" wrappingWidth="131.0">
+                           <font>
+                              <Font name="Serif Regular" size="30.0" />
+                           </font>
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.5260721445083618" green="0.6059494614601135" blue="0.8947368264198303" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.14939024390243902">
+                                       <color>
+                                          <Color red="0.9700000286102295" green="0.9700000286102295" blue="0.9700000286102295" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.6280487804878049">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.6310975609756098">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.9725490212440491" green="0.9725490212440491" blue="0.9725490212440491" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Text>
+                        <TextField fx:id="nameField" layoutX="341.0" layoutY="63.0" prefHeight="33.0" prefWidth="329.0" promptText="Name">
+                           <font>
+                              <Font name="Serif Regular" size="16.0" />
+                           </font>
+                        </TextField>
+                        <Text layoutX="785.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country" textAlignment="CENTER" wrappingWidth="131.0">
+                           <font>
+                              <Font name="Serif Regular" size="30.0" />
+                           </font>
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.5260721445083618" green="0.6059494614601135" blue="0.8947368264198303" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.14939024390243902">
+                                       <color>
+                                          <Color red="0.9700000286102295" green="0.9700000286102295" blue="0.9700000286102295" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.6280487804878049">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.6310975609756098">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.9725490212440491" green="0.9725490212440491" blue="0.9725490212440491" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Text>
+                        <TextField fx:id="codeField" layoutX="80.0" layoutY="67.0" prefHeight="33.0" prefWidth="212.0" promptText="Code">
+                           <font>
+                              <Font name="Serif Regular" size="16.0" />
+                           </font>
+                        </TextField>
+                        <ComboBox fx:id="countryBox" layoutX="735.0" layoutY="63.0" prefHeight="34.0" prefWidth="232.0" promptText="Country" />
+                     </children>
+                  </Pane>
+                  <Button layoutX="787.0" layoutY="681.0" mnemonicParsing="false" onAction="#createAirport" prefHeight="52.0" prefWidth="185.0" text="Create Airport">
+                     <font>
+                        <Font name="Serif Regular" size="23.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="62.0" layoutY="681.0" mnemonicParsing="false" onAction="#deleteAirport" prefHeight="52.0" prefWidth="185.0" text="Delete Airport">
+                     <font>
+                        <Font name="Serif Regular" size="23.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="287.0" layoutY="681.0" mnemonicParsing="false" onAction="#modifyAirport" prefHeight="52.0" prefWidth="185.0" text="Modify Airport">
+                     <font>
+                        <Font name="Serif Regular" size="23.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="523.0" layoutY="681.0" mnemonicParsing="false" onAction="#activateDeactivate" prefHeight="52.0" prefWidth="244.0" text="Activate / Deactivate">
+                     <font>
+                        <Font name="Serif Regular" size="23.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane layoutX="1.0" prefHeight="80.0" prefWidth="1032.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%);">
+               <children>
+                  <Text fx:id="txtMessage" layoutX="229.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Airports" textAlignment="CENTER" wrappingWidth="574.0">
+                     <font>
+                        <Font name="Serif Regular" size="47.0" />
+                     </font>
+                     <fill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.5260721445083618" green="0.6059494614601135" blue="0.8947368264198303" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.14939024390243902">
+                                 <color>
+                                    <Color red="0.9700000286102295" green="0.9700000286102295" blue="0.9700000286102295" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.6280487804878049">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.6310975609756098">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.9725490212440491" green="0.9725490212440491" blue="0.9725490212440491" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Text>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

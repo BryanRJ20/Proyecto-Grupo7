@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import ucr.project.HelloApplication;
 import util.FXUtility;
@@ -53,8 +54,9 @@ public class HelloController {
 
     @FXML
     public void airports(ActionEvent actionEvent) {
-        FXUtility.showMessage("Aeropuertos", "Funcionalidad de aeropuertos en desarrollo...");
-        // load("airports-view.fxml");
+        try {
+            load("airports-view.fxml");
+        } catch (Exception e) {showCompactError("Error", "Error cargando aeropuertos: " + e.getMessage());}
     }
 
     @FXML

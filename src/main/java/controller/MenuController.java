@@ -4,9 +4,15 @@ import domain.security.AuthenticationService;
 import domain.security.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import ucr.project.HelloApplication;
+
+import java.io.IOException;
 
 /**
  * Controlador del menú - DEPRECADO
@@ -22,6 +28,10 @@ public class MenuController {
     @javafx.fxml.FXML
     private Label welcomeLabel;
     AuthenticationService authService;
+
+    @FXML
+    private Pane MPain;
+
 
     @FXML
     public void initialize() {
@@ -66,6 +76,31 @@ public class MenuController {
 
     @javafx.fxml.FXML
     public void airports(ActionEvent actionEvent) {
-        // Implementación pendiente
+        try {
+            load("airports-view.fxml");
+        } catch (Exception e) {showCompactError("Error", "Error cargando aeropuertos: " + e.getMessage());}
+    }
+
+
+    public void load(String form) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(form));
+            this.bp.setCenter(fxmlLoader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            showCompactError("Error", "No se pudo cargar la vista: " + form +
+                    "\nError: " + e.getMessage());
+        }
+    }
+
+    private void showCompactError(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.getDialogPane().setPrefSize(400, 250);
+        alert.getDialogPane().setMaxWidth(400);
+        alert.getDialogPane().setMaxHeight(250);
+        alert.showAndWait();
     }
 }
