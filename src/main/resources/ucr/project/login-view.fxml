@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
@@ -9,13 +11,14 @@
     <center>
         <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #f5f5f5;">
             <children>
-                <!-- Título Principal -->
-                <Label text="✈️" textFill="#2c3e50">
-                    <font>
-                        <Font size="60.0" />
-                    </font>
-                </Label>
+                <!-- Logo/Imagen del Sistema -->
+                <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@LoginImage.jpg" />
+                    </image>
+                </ImageView>
 
+                <!-- Título -->
                 <Label text="Sistema de Gestión de Aeropuertos" textFill="#2c3e50">
                     <font>
                         <Font name="System Bold" size="24.0" />
