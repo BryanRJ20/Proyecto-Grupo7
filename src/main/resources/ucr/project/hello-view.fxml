@@ -174,7 +174,7 @@
                   <Image url="@imagen%201.jpeg" />
                </image>
             </ImageView>
-            <Label layoutX="128.0" layoutY="26.0" prefHeight="92.0" prefWidth="773.0" text="Welcome Username!" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="welcomeLabel" layoutX="128.0" layoutY="26.0" prefHeight="92.0" prefWidth="773.0" text="Welcome Username!" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Serif Bold" size="43.0" />
                </font>

@@ -1,6 +1,10 @@
 package controller;
 
+import domain.security.AuthenticationService;
+import domain.security.User;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -15,6 +19,20 @@ public class MenuController {
     private BorderPane bp;
     @javafx.fxml.FXML
     private AnchorPane ap;
+    @javafx.fxml.FXML
+    private Label welcomeLabel;
+    AuthenticationService authService;
+
+    @FXML
+    public void initialize() {
+        authService = AuthenticationService.getInstance();
+
+        // Configurar el mensaje de bienvenida
+        if (authService.isAuthenticated()) {
+            User currentUser = authService.getCurrentUser();
+            welcomeLabel.setText("Welcome " + currentUser.getUsername() + "!");
+        }
+    }
 
     @javafx.fxml.FXML
     public void exit(ActionEvent actionEvent) {

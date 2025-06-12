@@ -38,7 +38,7 @@ public class UserController {
         // Configurar el mensaje de bienvenida
         if (authService.isAuthenticated()) {
             User currentUser = authService.getCurrentUser();
-            lblWelcome.setText("¡Bienvenido " + currentUser.getUsername() + "!");
+            lblWelcome.setText("Welcome " + currentUser.getUsername() + "!");
         }
     }
 

@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class HelloApplication extends Application {
     @Override
@@ -13,7 +14,6 @@ public class HelloApplication extends Application {
         // Cambiar para que inicie con la ventana de login
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-
         stage.setTitle("Sistema de Gestión de Aeropuertos - Login");
         stage.setScene(scene);
         stage.setResizable(false);

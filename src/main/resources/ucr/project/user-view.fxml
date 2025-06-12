@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
@@ -14,7 +16,7 @@
     <left>
         <VBox prefHeight="800.0" prefWidth="280.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%);" BorderPane.alignment="CENTER">
             <children>
-                <Button mnemonicParsing="false" onAction="#Home" prefHeight="72.0" prefWidth="287.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Home">
+                <Button mnemonicParsing="false" onAction="#Home" prefHeight="72.0" prefWidth="287.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Menu">
                     <font>
                         <Font name="Serif Italic" size="39.0" />
                     </font>
@@ -35,7 +37,7 @@
                         </RadialGradient>
                     </textFill>
                 </Button>
-                <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#reservations" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Reservas">
+                <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#reservations" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Reservations">
                     <font>
                         <Font name="Serif Italic" size="39.0" />
                     </font>
@@ -56,7 +58,7 @@
                         </RadialGradient>
                     </textFill>
                 </Button>
-                <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#flights" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Vuelos">
+                <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#flights" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Flights">
                     <font>
                         <Font name="Serif Italic" size="39.0" />
                     </font>
@@ -77,7 +79,7 @@
                         </RadialGradient>
                     </textFill>
                 </Button>
-                <Button layoutX="10.0" layoutY="226.0" mnemonicParsing="false" onAction="#history" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Historial">
+                <Button layoutX="10.0" layoutY="226.0" mnemonicParsing="false" onAction="#history" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="History">
                     <font>
                         <Font name="Serif Italic" size="39.0" />
                     </font>
@@ -98,7 +100,7 @@
                         </RadialGradient>
                     </textFill>
                 </Button>
-                <Button layoutX="10.0" layoutY="442.0" mnemonicParsing="false" onAction="#logout" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Cerrar Sesión">
+                <Button layoutX="10.0" layoutY="442.0" mnemonicParsing="false" onAction="#logout" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Log out">
                     <font>
                         <Font name="Serif Italic" size="25.0" />
                     </font>
@@ -123,44 +125,94 @@
         </VBox>
     </left>
     <center>
-        <AnchorPane fx:id="ap" prefHeight="850.0" prefWidth="0.0" BorderPane.alignment="CENTER" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #2c3e50 0%, #34495e 100%);">
-            <children>
-                <Label fx:id="lblWelcome" layoutX="128.0" layoutY="26.0" prefHeight="92.0" prefWidth="773.0" text="¡Bienvenido Usuario!" textAlignment="CENTER" textFill="WHITE">
+        <AnchorPane fx:id="ap" prefHeight="850.0" prefWidth="0.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #2c3e50 0%, #34495e 100%);" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="850.0" fitWidth="1036.0" layoutX="-1.0" pickOnBounds="true">
+               <image>
+                  <Image url="@imagen%203.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="661.0" fitWidth="988.0" layoutX="41.0" layoutY="128.0" opacity="0.32" pickOnBounds="true">
+               <image>
+                  <Image url="@imagen%202.png" />
+               </image>
+            </ImageView>
+                <Label fx:id="lblWelcome" layoutX="90.0" layoutY="36.0" prefHeight="92.0" prefWidth="773.0" text="¡Welcome User!" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="Serif Bold" size="43.0" />
                     </font>
                 </Label>
-                <Label layoutX="77.0" layoutY="145.0" prefHeight="63.0" prefWidth="683.0" text="Bienvenido al Sistema de Gestión de Aeropuertos" textFill="WHITE">
+                <Label layoutX="90.0" layoutY="172.0" prefHeight="63.0" prefWidth="683.0" text="Welcome to theAirport and Flight Route Management System" textFill="WHITE">
                     <font>
                         <Font name="Serif Regular" size="22.0" />
                     </font>
                 </Label>
-                <Label layoutX="77.0" layoutY="202.0" prefHeight="63.0" prefWidth="601.0" text="Como usuario, puedes:" textFill="WHITE">
+                <Label layoutX="90.0" layoutY="235.0" prefHeight="63.0" prefWidth="601.0" text="As a user, you can:" textFill="WHITE">
                     <font>
                         <Font name="Serif Regular" size="22.0" />
                     </font>
                 </Label>
-                <Label layoutX="140.0" layoutY="265.0" prefHeight="63.0" prefWidth="476.0" text="• Realizar reservas de vuelos" textFill="WHITE">
+                <Label layoutX="138.0" layoutY="284.0" prefHeight="63.0" prefWidth="476.0" text="Make flight reservations" textFill="WHITE">
                     <font>
                         <Font name="Serif Regular" size="18.0" />
                     </font>
                 </Label>
-                <Label layoutX="140.0" layoutY="318.0" prefHeight="63.0" prefWidth="476.0" text="• Consultar vuelos disponibles" textFill="WHITE">
+                <Label layoutX="138.0" layoutY="329.0" prefHeight="63.0" prefWidth="476.0" text="Check available flights" textFill="WHITE">
                     <font>
                         <Font name="Serif Regular" size="18.0" />
                     </font>
                 </Label>
-                <Label layoutX="140.0" layoutY="375.0" prefHeight="63.0" prefWidth="476.0" text="• Ver historial de reservas" textFill="WHITE">
+                <Label layoutX="138.0" layoutY="378.0" prefHeight="63.0" prefWidth="476.0" text="View reservations history" textFill="WHITE">
                     <font>
                         <Font name="Serif Regular" size="18.0" />
                     </font>
                 </Label>
-                <Label layoutX="140.0" layoutY="429.0" prefHeight="63.0" prefWidth="476.0" text="• Gestionar tu perfil" textFill="WHITE">
+                <Label layoutX="138.0" layoutY="426.0" prefHeight="63.0" prefWidth="476.0" text="Manage your profile" textFill="WHITE">
                     <font>
                         <Font name="Serif Regular" size="18.0" />
                     </font>
                 </Label>
-            </children>
+            <Label layoutX="101.0" layoutY="596.0" prefHeight="63.0" prefWidth="256.0" text="Project carried out by:" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="101.0" layoutY="701.0" prefHeight="63.0" prefWidth="275.0" text="• Caleb Hernández C23811" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="101.0" layoutY="670.0" prefHeight="63.0" prefWidth="275.0" text="• Alejandro Porras Orozco C26030" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="101.0" layoutY="639.0" prefHeight="63.0" prefWidth="275.0" text="• Bryan Rojas Jiménez C36900" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="17.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="49.0" fitWidth="33.0" layoutX="90.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@reservationsIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="49.0" fitWidth="33.0" layoutX="90.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@checkAvailableIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="49.0" fitWidth="33.0" layoutX="90.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@historyIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="49.0" fitWidth="33.0" layoutX="90.0" layoutY="442.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@profileIcon.png" />
+               </image>
+            </ImageView>
+         </children>
         </AnchorPane>
     </center>
 </BorderPane>
