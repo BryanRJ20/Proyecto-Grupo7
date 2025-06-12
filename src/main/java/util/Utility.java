@@ -124,25 +124,31 @@ public class Utility {
         return result;
     }
 
-    public static int compare(Object a, Object b) {
-        switch (instanceOf(a, b)){
-            case "Integer":
-                Integer int1 = (Integer)a; Integer int2 = (Integer)b;
-                return int1 < int2 ? -1 : int1 > int2 ? 1 : 0; //0 == equal
-            case "String":
-                String st1 = (String)a; String st2 = (String)b;
-                return st1.compareTo(st2)<0 ? -1 : st1.compareTo(st2) > 0 ? 1 : 0;
-            case "Character":
-                Character c1 = (Character)a; Character c2 = (Character)b;
-                return c1.compareTo(c2)<0 ? -1 : c1.compareTo(c2)>0 ? 1 : 0;
-            case "EdgeWeight":
-                EdgeWeight ew1 = (EdgeWeight) a; EdgeWeight ew2 = (EdgeWeight) b;
-                return compare(ew1.getEdge(), ew2.getEdge());
-            case "Vertex":
-                Vertex v1 = (Vertex) a; Vertex v2 = (Vertex) b;
-                return compare(v1.data, v2.data);
+    public static int compare(Object obj1, Object obj2) {
+        if (obj1 == null && obj2 == null) {
+            return 0;
         }
-        return 2; //Unknown
+        if (obj1 == null) {
+            return -1;
+        }
+        if (obj2 == null) {
+            return 1;
+        }
+
+        // Si ambos objetos son del mismo tipo y implementan Comparable
+        if (obj1.getClass().equals(obj2.getClass()) && obj1 instanceof Comparable) {
+            return ((Comparable) obj1).compareTo(obj2);
+        }
+
+        // Comparar por toString si no son comparables
+        return obj1.toString().compareTo(obj2.toString());
+    }
+
+    /**
+     * Verifica si dos objetos son iguales de manera segura
+     */
+    public static boolean equals(Object obj1, Object obj2) {
+        return compare(obj1, obj2) == 0;
     }
 
     private static String instanceOf(Object a, Object b) {
@@ -421,16 +427,6 @@ public class Utility {
     //------------------------------------------------------------------------------
 
     //-------------------- Métodos para Proyecto --------------------
-
-
-
-
-
-
-
-
-
-
 
 }//END CLASS
 

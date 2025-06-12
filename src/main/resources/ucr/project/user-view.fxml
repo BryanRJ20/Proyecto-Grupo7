@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserController">
+    <left>
+        <VBox prefHeight="800.0" prefWidth="280.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%);" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" onAction="#Home" prefHeight="72.0" prefWidth="287.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Home">
+                    <font>
+                        <Font name="Serif Italic" size="39.0" />
+                    </font>
+                    <textFill>
+                        <RadialGradient centerX="0.5165745856353591" centerY="0.5" radius="0.7873563218390804">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.5263158082962036" green="0.5263158082962036" blue="0.5263158082962036" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </RadialGradient>
+                    </textFill>
+                </Button>
+                <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#reservations" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Reservas">
+                    <font>
+                        <Font name="Serif Italic" size="39.0" />
+                    </font>
+                    <textFill>
+                        <RadialGradient centerX="0.5165745856353591" centerY="0.5" radius="0.7873563218390804">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.5263158082962036" green="0.5263158082962036" blue="0.5263158082962036" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </RadialGradient>
+                    </textFill>
+                </Button>
+                <Button layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#flights" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Vuelos">
+                    <font>
+                        <Font name="Serif Italic" size="39.0" />
+                    </font>
+                    <textFill>
+                        <RadialGradient centerX="0.5165745856353591" centerY="0.5" radius="0.7873563218390804">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.5263158082962036" green="0.5263158082962036" blue="0.5263158082962036" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </RadialGradient>
+                    </textFill>
+                </Button>
+                <Button layoutX="10.0" layoutY="226.0" mnemonicParsing="false" onAction="#history" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Historial">
+                    <font>
+                        <Font name="Serif Italic" size="39.0" />
+                    </font>
+                    <textFill>
+                        <RadialGradient centerX="0.5165745856353591" centerY="0.5" radius="0.7873563218390804">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.5263158082962036" green="0.5263158082962036" blue="0.5263158082962036" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </RadialGradient>
+                    </textFill>
+                </Button>
+                <Button layoutX="10.0" layoutY="442.0" mnemonicParsing="false" onAction="#logout" prefHeight="72.0" prefWidth="292.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Cerrar Sesión">
+                    <font>
+                        <Font name="Serif Italic" size="25.0" />
+                    </font>
+                    <textFill>
+                        <RadialGradient centerX="0.5165745856353591" centerY="0.5" radius="0.7873563218390804">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.5263158082962036" green="0.5263158082962036" blue="0.5263158082962036" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </RadialGradient>
+                    </textFill>
+                </Button>
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <AnchorPane fx:id="ap" prefHeight="850.0" prefWidth="0.0" BorderPane.alignment="CENTER" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #2c3e50 0%, #34495e 100%);">
+            <children>
+                <Label fx:id="lblWelcome" layoutX="128.0" layoutY="26.0" prefHeight="92.0" prefWidth="773.0" text="¡Bienvenido Usuario!" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Serif Bold" size="43.0" />
+                    </font>
+                </Label>
+                <Label layoutX="77.0" layoutY="145.0" prefHeight="63.0" prefWidth="683.0" text="Bienvenido al Sistema de Gestión de Aeropuertos" textFill="WHITE">
+                    <font>
+                        <Font name="Serif Regular" size="22.0" />
+                    </font>
+                </Label>
+                <Label layoutX="77.0" layoutY="202.0" prefHeight="63.0" prefWidth="601.0" text="Como usuario, puedes:" textFill="WHITE">
+                    <font>
+                        <Font name="Serif Regular" size="22.0" />
+                    </font>
+                </Label>
+                <Label layoutX="140.0" layoutY="265.0" prefHeight="63.0" prefWidth="476.0" text="• Realizar reservas de vuelos" textFill="WHITE">
+                    <font>
+                        <Font name="Serif Regular" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="140.0" layoutY="318.0" prefHeight="63.0" prefWidth="476.0" text="• Consultar vuelos disponibles" textFill="WHITE">
+                    <font>
+                        <Font name="Serif Regular" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="140.0" layoutY="375.0" prefHeight="63.0" prefWidth="476.0" text="• Ver historial de reservas" textFill="WHITE">
+                    <font>
+                        <Font name="Serif Regular" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="140.0" layoutY="429.0" prefHeight="63.0" prefWidth="476.0" text="• Gestionar tu perfil" textFill="WHITE">
+                    <font>
+                        <Font name="Serif Regular" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>

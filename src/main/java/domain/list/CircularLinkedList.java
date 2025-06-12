@@ -1,308 +1,256 @@
 package domain.list;
 
-public class CircularLinkedList implements List {
+/**
+ * Implementación de Lista Circular Enlazada para gestión de usuarios
+ */
+public class CircularLinkedList {
+    private Node head;
+    private Node tail;
+    private int size;
 
-    public Node first; //apuntador al inicio de la lista
-    public Node last; //apuntador al ultimo nodo de la lista
-
-    //Constructor
-    public CircularLinkedList(){
-        this.first = this.last = null;
+    public CircularLinkedList() {
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
     }
 
-    @Override
-    public int size() throws ListException {
-        if(isEmpty())
-            throw new ListException("Circular Linked List is empty");
-        int counter = 0; //contador de nodos
-        Node aux = first; //aux para moverme por la lista y no perder el puntero al inicio
-        while(aux!=last){
-            counter++;
-            aux = aux.next;
-        }
-        //se sale del while cuando aux==last
-        return counter+1;
-    }
-
-    @Override
-    public void clear() {
-        this.first = this.last = null; //anula la lista
-    }
-
-    @Override
     public boolean isEmpty() {
-        return first == null;
+        return head == null;
     }
 
-    @Override
-    public boolean contains(Object element) throws ListException {
-        if(isEmpty())
-            throw new ListException("Circular Linked List is empty");
-        Node aux = first;
-        while(aux!=last){
-            if(util.Utility.compare(aux.data, element)==0) return true; //ya lo encontro
-            aux = aux.next; //muevo aux al nodo sgte
+    public int size() {
+        return size;
+    }
+
+    public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
+    /**
+     * Agrega un elemento al final de la lista
+     */
+    public void add(Object element) throws ListException {
+        if (element == null) {
+            throw new ListException("Element cannot be null");
         }
-        //se sale del while cuando aux esta en el ult nodo
-        if(util.Utility.compare(aux.data, element)==0) return true;
-        return false; //significa que no encontro el elemento
-    }
 
-    @Override
-    public void add(Object element) {
         Node newNode = new Node(element);
-        if(isEmpty())
-            first = last = newNode;
-        else{
-            last.next = newNode;
-            last = newNode; //movemos el apuntador al ult nodo
+
+        if (isEmpty()) {
+            head = newNode;
+            tail = newNode;
+            newNode.next = head; // Circular: apunta a sí mismo
+        } else {
+            tail.next = newNode;
+            newNode.next = head; // Circular: el último apunta al primero
+            tail = newNode;
         }
-        //al final hacenos el enlace circular
-        last.next = first;
+        size++;
     }
 
-    @Override
-    public void addFirst(Object element) {
-        Node newNode = new Node(element);
-        if(isEmpty())
-            first = last = newNode;
-        else
-            newNode.next = first;
-        first = newNode;
-        //al final hacenos el enlace circular
-        last.next = first;
-    }
+    /**
+     * Agrega un elemento en una posición específica
+     */
+    public void add(Object element, int index) throws ListException {
+        if (element == null) {
+            throw new ListException("Element cannot be null");
+        }
+        if (index < 0 || index > size) {
+            throw new ListException("Index out of bounds: " + index);
+        }
 
-    @Override
-    public void addLast(Object element) {
-        add(element);
-    }
-
-    @Override
-    public void addInSortedList(Object element) {
-        if(isEmpty()) {
-            add(element);
+        if (index == size) {
+            add(element); // Agregar al final
             return;
         }
 
-        // Si el elemento es menor que el primer nodo, agregar al inicio
-        if(util.Utility.compare(element, first.data) < 0) {
-            addFirst(element);
-            return;
-        }
-
-        // Si el elemento es mayor que el último nodo, agregar al final
-        if(util.Utility.compare(element, last.data) > 0) {
-            addLast(element);
-            return;
-        }
-
-        // El elemento va en medio de la lista
         Node newNode = new Node(element);
-        Node aux = first;
 
-        // Recorrer la lista hasta encontrar la posición adecuada
-        while(aux != last && util.Utility.compare(element, aux.next.data) > 0) {
-            aux = aux.next;
-        }
-
-        // Insertar el nuevo nodo entre aux y aux.next
-        newNode.next = aux.next;
-        aux.next = newNode;
-    }
-
-    @Override
-    public void remove(Object element) throws ListException {
-        if(isEmpty())
-            throw new ListException("Circular Linked List is empty");
-        //Caso 1: El elemento a suprimir es el primero de la lista
-        if(util.Utility.compare(first.data, element)==0)
-            first = first.next;
-            //Caso 2. El elemento puede estar en el medio o al final
-        else{
-            Node prev = first; //nodo anterior
-            Node aux = first.next; //nodo sgte
-            while(aux!=last && !(util.Utility.compare(aux.data, element)==0)){
-                prev = aux;
-                aux = aux.next;
+        if (index == 0) {
+            if (isEmpty()) {
+                head = tail = newNode;
+                newNode.next = head;
+            } else {
+                newNode.next = head;
+                tail.next = newNode;
+                head = newNode;
             }
-            //se sale del while cuanda aux esta en el ult nodo
-            //o cuando encuentra el elemento
-            if(util.Utility.compare(aux.data, element)==0){
-                //debo desenlazar  el nodo
-                prev.next = aux.next;
+        } else {
+            Node current = head;
+            for (int i = 0; i < index - 1; i++) {
+                current = current.next;
             }
-            //debo asegurarme q last apunte al ultimo nodo
-            if(aux==last){ //estamos en el ultimo nodo
-                last=prev;
+            newNode.next = current.next;
+            current.next = newNode;
+        }
+        size++;
+    }
+
+    /**
+     * Remueve un elemento por índice
+     */
+    public Object remove(int index) throws ListException {
+        if (isEmpty()) {
+            throw new ListException("List is empty");
+        }
+        if (index < 0 || index >= size) {
+            throw new ListException("Index out of bounds: " + index);
+        }
+
+        Object removedData;
+
+        if (size == 1) {
+            removedData = head.data;
+            clear();
+            return removedData;
+        }
+
+        if (index == 0) {
+            removedData = head.data;
+            head = head.next;
+            tail.next = head;
+        } else {
+            Node current = head;
+            for (int i = 0; i < index - 1; i++) {
+                current = current.next;
             }
-        }
-        //mantengo el enlace circular
-        last.next = first;
-        //q pasa si solo queda un nodo
-        //y es el q quiero eliminar
-        if(first==last&&util.Utility.compare(first.data, element)==0){
-            clear(); //anulo la lista
-        }
-    }
+            removedData = current.next.data;
 
-    @Override
-    public Object removeFirst() throws ListException {
-        if(isEmpty())
-            throw new ListException("Circular Linked List is empty");
-        Object value = first.data;
-        first = first.next; //movemos el apuntador al nodo sgte
-        //hago el enlace circular
-        last.next = first;
-        return value;
-    }
-
-    @Override
-    public Object removeLast() throws ListException {
-        if(isEmpty())
-            throw new ListException("Circular Linked List is empty");
-        Node aux = first;
-        Node prev = null; //rastro al nodo anterior
-        while(aux.next!=first){
-            prev = aux; //prev siempre queda un nodo atras de aux
-            aux = aux.next;
-        }
-        //se sale cuando aux esta en el ult nodo
-        Object element = aux.data;
-        if(prev!=null) {
-            prev.next = last.next; //con esto elimino el ult nodo
-            last = prev;
-            //al final hacenos el enlace circular
-            last.next = first;
-        }else first = null; //significa q solo hay un nodo en la lista
-        return element; //retorna el elemento eliminado
-    }
-
-    @Override
-    public void sort() throws ListException {
-        if(isEmpty())
-            throw new ListException("Circular Linked List is empty");
-        for (int i = 1; i<=size(); i++) {
-            for (int j = i+1; j<=size() ; j++) {
-                if(util.Utility.compare(getNode(j).data, getNode(i).data)<0){
-                    Object aux = getNode(i).data;
-                    getNode(i).data = getNode(j).data;
-                    getNode(j).data = aux;
-                }
+            if (current.next == tail) {
+                tail = current;
             }
+            current.next = current.next.next;
         }
+
+        size--;
+        return removedData;
     }
 
-    @Override
+    /**
+     * Remueve un elemento específico
+     */
+    public boolean remove(Object element) throws ListException {
+        if (isEmpty()) {
+            return false;
+        }
+
+        int index = indexOf(element);
+        if (index != -1) {
+            remove(index);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Obtiene un elemento por índice
+     */
+    public Object get(int index) throws ListException {
+        if (isEmpty()) {
+            throw new ListException("List is empty");
+        }
+        if (index < 0 || index >= size) {
+            throw new ListException("Index out of bounds: " + index);
+        }
+
+        Node current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current.data;
+    }
+
+    /**
+     * Actualiza un elemento en una posición específica
+     */
+    public Object set(int index, Object element) throws ListException {
+        if (element == null) {
+            throw new ListException("Element cannot be null");
+        }
+        if (isEmpty()) {
+            throw new ListException("List is empty");
+        }
+        if (index < 0 || index >= size) {
+            throw new ListException("Index out of bounds: " + index);
+        }
+
+        Node current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        Object oldData = current.data;
+        current.data = element;
+        return oldData;
+    }
+
+    /**
+     * Busca la primera ocurrencia de un elemento
+     */
     public int indexOf(Object element) throws ListException {
-        if(isEmpty())
-            throw new ListException("Circular Linked List is empty");
-        Node aux = first;
-        int index = 1; //el primer indice de la lista es 1
-        while(aux!=last){
-            if(util.Utility.compare(aux.data, element)==0) return index;
-            index++;
-            aux = aux.next;
+        if (isEmpty()) {
+            return -1;
         }
-        //se sale cuando aux == last
-        if(util.Utility.compare(aux.data, element)==0) return index;
-        return -1; //significa q el elemento no existe en la lista
-    }
 
-    @Override
-    public Object getFirst() throws ListException {
-        if(isEmpty())
-            throw new ListException("Circular Linked List is empty");
-        return first.data;
-    }
-
-    @Override
-    public Object getLast() throws ListException {
-        if(isEmpty())
-            throw new ListException("Circular Linked List is empty");
-        return last.data;
-    }
-
-    @Override
-    public Object getPrev(Object element) throws ListException {
-        if(isEmpty())
-            throw new ListException("Circular Linked List is empty");
-        Node aux = first;
-        while(aux.next!=first){
-            if(util.Utility.compare(aux.next.data, element)==0) return aux.data;
-            aux = aux.next;
-        }
-        //se sale cuando aux.next == first
-        if(util.Utility.compare(aux.next.data, element)==0) return aux.data;
-        return "Does not exist in Circular Linked List";
-    }
-
-    @Override
-    public Object getNext(Object element) throws ListException {
-        if(isEmpty()){
-            throw new ListException("Circular Linked List is empty");
-        }
-        Node aux = first; //dejar un rastro
-        while(aux!=last){
-            if(util.Utility.compare(aux.data, element)==0){
-                return aux.next.data; //el elemento posterior
+        Node current = head;
+        for (int i = 0; i < size; i++) {
+            if (util.Utility.compare(current.data, element) == 0) {
+                return i;
             }
-            aux = aux.next; //lo movemos al sgte nodo
+            current = current.next;
         }
-        //se sale cuando aux==last
-        if(util.Utility.compare(aux.data, element)==0){
-            return aux.next.data; //el elemento anterior
-        }
-        return "Does not exist in Circular Linked List";
+        return -1;
     }
 
-    @Override
-    public Node getNode(int index) throws ListException {
-        if(isEmpty())
-            throw new ListException("Circular Linked List is empty");
-        Node aux = first;
-        int i = 1; //posicion del primer nodo
-        while(aux!=last){
-            if(util.Utility.compare(i, index)==0){
-                return aux;
+    /**
+     * Verifica si la lista contiene un elemento
+     */
+    public boolean contains(Object element) throws ListException {
+        return indexOf(element) != -1;
+    }
+
+    /**
+     * Busca un elemento que cumpla con un criterio específico
+     */
+    public Object find(SearchCriteria criteria) throws ListException {
+        if (isEmpty()) {
+            return null;
+        }
+
+        Node current = head;
+        for (int i = 0; i < size; i++) {
+            if (criteria.matches(current.data)) {
+                return current.data;
             }
-            i++;
-            aux = aux.next; //lo movemos al sgte nodo
+            current = current.next;
         }
-        //se sale cuando aux == last
-        if(util.Utility.compare(i, index)==0) return aux;
-        return null; //si llega aquí es porque no encontró el nodo
+        return null;
     }
-
 
     @Override
     public String toString() {
-        if(isEmpty()) return "Circular Linked List is empty";
-        String result = "Circular Linked List Content\n";
-        Node aux = first; //aux para moverme por la lista y no perder el puntero al inicio
-        while(aux!=last){
-            result+=aux.data+"\n";
-            aux = aux.next; //lo muevo al sgte nodo
+        if (isEmpty()) {
+            return "Circular List is empty";
         }
-        //se sale cuando aux==last
-        //agregamos la info del último nodo
-        return result+aux.data;
+
+        StringBuilder result = new StringBuilder("Circular List: [");
+        Node current = head;
+        for (int i = 0; i < size; i++) {
+            result.append(current.data);
+            if (i < size - 1) {
+                result.append(", ");
+            }
+            current = current.next;
+        }
+        result.append("]");
+        return result.toString();
     }
 
-    public String show() {
-        if(isEmpty()) return "Circular Linked List is empty";
-        String result = "";
-        Node aux = first; //aux para moverme por la lista y no perder el puntero al inicio
-        while(aux!=last){
-            result+=aux.data+"\n";
-            aux = aux.next; //lo muevo al sgte nodo
-        }
-        //se sale cuando aux==last
-        //agregamos la info del último nodo
-        return result+aux.data;
+    /**
+     * Interfaz para criterios de búsqueda
+     */
+    public interface SearchCriteria {
+        boolean matches(Object element);
     }
-
-
-
-
-}//END CLASS
+}

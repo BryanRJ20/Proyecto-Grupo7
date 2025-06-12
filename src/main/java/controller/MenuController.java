@@ -4,8 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * Controlador del menú - DEPRECADO
+ * Se mantiene por compatibilidad, pero no se usa
+ */
+@Deprecated
 public class MenuController {
-
 
     @javafx.fxml.FXML
     private BorderPane bp;
@@ -19,14 +23,17 @@ public class MenuController {
 
     @javafx.fxml.FXML
     public void passengers(ActionEvent actionEvent) {
+        // Implementación pendiente
     }
 
     @javafx.fxml.FXML
     public void simulation(ActionEvent actionEvent) {
+        // Implementación pendiente
     }
 
     @javafx.fxml.FXML
     public void flights(ActionEvent actionEvent) {
+        // Implementación pendiente
     }
 
     @javafx.fxml.FXML
@@ -36,9 +43,11 @@ public class MenuController {
 
     @javafx.fxml.FXML
     public void statistics(ActionEvent actionEvent) {
+        // Implementación pendiente
     }
 
     @javafx.fxml.FXML
     public void airports(ActionEvent actionEvent) {
+        // Implementación pendiente
     }
 }
