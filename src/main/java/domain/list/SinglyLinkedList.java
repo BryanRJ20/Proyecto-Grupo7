@@ -1,7 +1,7 @@
 package domain.list;
 
 public class SinglyLinkedList implements List{
-    private Node first; //apuntador al inicio de la lista
+    public Node first; //apuntador al inicio de la lista
 
     public SinglyLinkedList() {
         this.first = null; //la lista no existe

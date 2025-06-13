@@ -3,6 +3,7 @@ package util;
 
 import domain.EdgeWeight;
 import domain.Vertex;
+import domain.list.DoublyLinkedList;
 
 import java.text.CollationKey;
 import java.text.DecimalFormat;
@@ -16,6 +17,9 @@ import java.util.Stack;
 public class Utility {
 
     private static final Random random;
+   // private static DoublyLinkedList airportsList;
+
+
     //  private static CircularLinkedList employeeList;
     //  private static CircularDoublyLinkedList jobPositionList;
     //  private static CircularDoublyLinkedList staffingList;
@@ -29,6 +33,9 @@ public class Utility {
         // semilla para el random
         long seed = System.currentTimeMillis();
         random = new Random(seed);
+
+        //Para proyecto
+        //airportsList = new DoublyLinkedList();
 
         //Para laboratorio 7
         //   queue = new LinkedQueue();
@@ -83,14 +90,14 @@ public class Utility {
     }
 */
     // ------------------------------------------------------------- Métodos:
-    public static int random(int bound){
+    public static int random(int bound) {
         // return(int) Math.floor(Math.random()*bound); //Forma 1
         return random.nextInt(bound);
     }
 
 
     public static void fill(int[] a) {
-        for (int i = 0; i < a.length; i++){
+        for (int i = 0; i < a.length; i++) {
             a[i] = random(99);
         }
     }
@@ -108,18 +115,18 @@ public class Utility {
     }
 
     public static int min(int x, int y) {
-        return x<y ? x : y;
+        return x < y ? x : y;
     }
 
     public static int max(int x, int y) {
-        return x>y ? x : y;
+        return x > y ? x : y;
     }
 
     public static String show(int[] a) {
-        String result ="";
-        for (int item : a){
+        String result = "";
+        for (int item : a) {
             if (item == 0) break; //si es cero es porque no hay más elementos
-            result+=item + " ";
+            result += item + " ";
         }//End for
         return result;
     }
@@ -152,11 +159,11 @@ public class Utility {
     }
 
     private static String instanceOf(Object a, Object b) {
-        if(a instanceof Integer && b instanceof Integer) return "Integer";
-        if(a instanceof String && b instanceof String) return "String";
-        if(a instanceof Character && b instanceof Character) return "Character";
-        if(a instanceof EdgeWeight && b instanceof EdgeWeight) return "EdgeWeight";
-        if(a instanceof Vertex && b instanceof Vertex) return "Vertex";
+        if (a instanceof Integer && b instanceof Integer) return "Integer";
+        if (a instanceof String && b instanceof String) return "String";
+        if (a instanceof Character && b instanceof Character) return "Character";
+        if (a instanceof EdgeWeight && b instanceof EdgeWeight) return "EdgeWeight";
+        if (a instanceof Vertex && b instanceof Vertex) return "Vertex";
         return "Unknown";
     }
 
@@ -194,10 +201,16 @@ public class Utility {
     private static int getPriorityOperators(char operator) {
 
         switch (operator) {
-            case '+': case '-': return 1; //Prioridad más baja
-            case '*': case '/': return 2;
-            case '^': return 3; //Prioridad más alta
-        } return -1;
+            case '+':
+            case '-':
+                return 1; //Prioridad más baja
+            case '*':
+            case '/':
+                return 2;
+            case '^':
+                return 3; //Prioridad más alta
+        }
+        return -1;
 
     }
 
@@ -314,7 +327,7 @@ public class Utility {
                 }
                 return operand1 / operand2;
             case '^':
-                return (int)Math.pow(operand1, operand2);
+                return (int) Math.pow(operand1, operand2);
             default:
                 throw new IllegalArgumentException("Operador inválido");
         }
@@ -326,35 +339,34 @@ public class Utility {
     public static String getPlace() {
         String places[] = {"San José", "Ciudad Quesada", "Paraíso",
                 "Turrialba", "Limón", "Liberia", "Puntarenas", "San Ramón", "Puerto Viejo", "Volcán Irazú", "Pérez Zeledón",
-                "Palmares", "Orotina", "El coco", "Ciudad Neilly", "Sixaola", "Guápiles","Siquirres"
+                "Palmares", "Orotina", "El coco", "Ciudad Neilly", "Sixaola", "Guápiles", "Siquirres"
                 , "El Guarco", "Cartago", "Santa Bárbara", "Jacó", "Manuel Antonio", "Quepos", "Santa Cruz",
                 "Nicoya"};
 
-        return places[random(places.length-1)];
+        return places[random(places.length - 1)];
     }
 
     public static String getWeather() {
         String weathers[] = {"Rainy", "Thunderstorm", "Sunny", "Cloudy", "Foggy"};
-        return  weathers[random(weathers.length-1)];
+        return weathers[random(weathers.length - 1)];
     }
 
     public static String getPersonName() {
-        String names [] = {"Juan", "Alejandro", "Natalia", "Fabiana", "Victoria", "Ana", "Valeria", "Nicole", "Esteban", "Rodrigo",
+        String names[] = {"Juan", "Alejandro", "Natalia", "Fabiana", "Victoria", "Ana", "Valeria", "Nicole", "Esteban", "Rodrigo",
                 "Victor", "Ricardo", "Bryan", "Pedro", "David", "José", "María", "Caleb", "Eduardo", "Jason", "Alex"};
-        return names[random(names.length-1)];
+        return names[random(names.length - 1)];
     }
 
     public static String getMood() {
         String moods[] = {"Happiness", "Sadness", "Anger", "Sickness", "Cheerful",
                 "Reflective", "Gloomy", "Romantic", "Calm", "Hopeful", "Fearful", "Tense", "Lonely"};
 
-        return moods[random(moods.length-1)];
+        return moods[random(moods.length - 1)];
     }
 
     public static int getAttention() {
         return random.nextInt(100); // Genera un número entre 0 y 99;
     }
-
 
 
     //------------------------------------------------------------------------------
@@ -364,14 +376,14 @@ public class Utility {
     public static int maxArray(int[] a) {
         int max = a[0]; //first element
         for (int i = 1; i < a.length; i++) {
-            if(a[i]>max){
-                max=a[i];
+            if (a[i] > max) {
+                max = a[i];
             }
         }
         return max;
     }//end maxArray
 
-    public static int[] getIntegerArray(int n){
+    public static int[] getIntegerArray(int n) {
         int arrayResult[] = new int[n];
 
         for (int i = 0; i < n; i++)
@@ -405,7 +417,7 @@ public class Utility {
     }//end sortElementaryArrays()
 */
 
-    public static int[] copyArray(int[] a, int lenght){
+    public static int[] copyArray(int[] a, int lenght) {
         int[] result = new int[lenght];
 
         for (int i = 0; i < lenght; i++)
@@ -427,6 +439,15 @@ public class Utility {
     //------------------------------------------------------------------------------
 
     //-------------------- Métodos para Proyecto --------------------
+
+/*
+    public static DoublyLinkedList getAirportList() {
+        return airportsList;
+    }
+    public static void setAirportList(DoublyLinkedList airportsList) {
+        Utility.airportsList = airportsList;
+    }
+*/
 
 }//END CLASS
 

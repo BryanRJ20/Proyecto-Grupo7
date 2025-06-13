@@ -21,10 +21,10 @@
                <children>
                   <TableView fx:id="tvAirport" layoutX="146.0" layoutY="28.0" prefHeight="345.0" prefWidth="741.0">
                     <columns>
-                      <TableColumn prefWidth="107.0" text="Code" />
-                      <TableColumn prefWidth="293.0" text="Name" />
-                        <TableColumn prefWidth="187.0" text="Country" />
-                        <TableColumn minWidth="0.0" prefWidth="153.0" text="Status" />
+                      <TableColumn fx:id="codeColumn" prefWidth="107.0" text="Code" />
+                      <TableColumn fx:id="nameColumn" prefWidth="293.0" text="Name" />
+                        <TableColumn fx:id="countryColumn" prefWidth="187.0" text="Country" />
+                        <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="153.0" text="Status" />
                     </columns>
                   </TableView>
                   <Pane layoutX="-2.0" layoutY="439.0" prefHeight="125.0" prefWidth="1038.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%);">

@@ -1,13 +1,16 @@
 package domain;
 
+import com.google.gson.annotations.Expose;
 import domain.list.SinglyLinkedList;
 
 public class Airport {
 
-    private int code;
-    private String name;
-    private String country;
-    private Status status;
+    public int code;
+    public String name;
+    public String country;
+    public Status status;
+
+    @Expose
     private SinglyLinkedList departuresBoard;
 
     //Constructor
@@ -19,12 +22,7 @@ public class Airport {
         this.departuresBoard = new SinglyLinkedList(); //incializa
     }
 
-
-
-
-
-
-
+    public Airport() {} // Constructor por defecto obligatorio para Gson
 
 
     // -- Getters y Setters --

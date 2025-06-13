@@ -2,7 +2,7 @@ package domain.list;
 
 public class DoublyLinkedList implements List{
 
-    private Node first; //apuntador al inicio de la lista
+    public Node first; //apuntador al inicio de la lista
 
     //Constructor
     public DoublyLinkedList(){

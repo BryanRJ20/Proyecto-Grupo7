@@ -1,0 +1,62 @@
+[
+  {
+    "code": 1001,
+    "name": "Aeropuerto Internacional Juan Santamaría",
+    "country": "Costa Rica",
+    "status": "ACTIVE"
+  },
+  {
+    "code": 1002,
+    "name": "John F. Kennedy International Airport",
+    "country": "Estados Unidos",
+    "status": "ACTIVE"
+  },
+  {
+    "code": 1003,
+    "name": "London Heathrow Airport",
+    "country": "Reino Unido",
+    "status": "ACTIVE"
+  },
+  {
+    "code": 1004,
+    "name": "Charles de Gaulle Airport",
+    "country": "Francia",
+    "status": "ACTIVE"
+  },
+  {
+    "code": 1005,
+    "name": "Tokyo Haneda Airport",
+    "country": "Japón",
+    "status": "ACTIVE"
+  },
+  {
+    "code": 1006,
+    "name": "São Paulo–Guarulhos International Airport",
+    "country": "Brasil",
+    "status": "INACTIVE"
+  },
+  {
+    "code": 1007,
+    "name": "Sydney Kingsford Smith Airport",
+    "country": "Australia",
+    "status": "INACTIVE"
+  },
+  {
+    "code": 1008,
+    "name": "Frankfurt am Main Airport",
+    "country": "Alemania",
+    "status": "ACTIVE"
+  },
+  {
+    "code": 1009,
+    "name": "Dubai International Airport",
+    "country": "Emiratos Árabes Unidos",
+    "status": "INACTIVE"
+  },
+  {
+    "code": 1010,
+    "name": "Toronto Pearson International Airport",
+    "country": "Canadá",
+    "status": "ACTIVE"
+  }
+]
