@@ -7,9 +7,9 @@ import domain.stack.LinkedStack;
 import domain.stack.StackException;
 
 public class AdjacencyListGraph implements Graph {
-    private Vertex[] vertexList; //arreglo de objetos tupo vértice
+    protected Vertex[] vertexList; //arreglo de objetos tupo vértice - CAMBIADO DE PRIVATE A PROTECTED
     private int n; //max de elementos
-    private int counter; //contador de vertices
+    protected int counter; //contador de vertices - CAMBIADO DE PRIVATE A PROTECTED
 
     //para los recorridos dfs, bfs
     private LinkedStack stack;
@@ -80,7 +80,7 @@ public class AdjacencyListGraph implements Graph {
 
     }
 
-    private int indexOf(Object element){
+    protected int indexOf(Object element){ // CAMBIADO DE PRIVATE A PROTECTED
         for (int i = 0; i < counter; i++) {
             if(util.Utility.compare(vertexList[i].data, element)==0)
                 return i; //retorna la pos en el arreglo de objectos vertexList
