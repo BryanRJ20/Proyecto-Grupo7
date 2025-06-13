@@ -139,11 +139,13 @@ public class SimulationRunner {
         // Intentar cargar pasajeros desde JSON
         AVLTree passengers = DataLoader.loadPassengersFromJson("src/main/resources/data/passengers.json");
 
+        // Asignar los pasajeros cargados al FlightController
+        flightController.setPassengersTree(passengers);
+
         // Si no hay suficientes pasajeros, generar más
-        if (passengers.size() < 100) {
-            flightController.generateRandomPassengers(500);
-        } else {
-            flightController.setPassengersTree(passengers);
+        if (passengers.size() < 500) {
+            int needed = 500 - passengers.size(); // Calcular cuántos faltan
+            flightController.generateRandomPassengers(needed);
         }
 
         System.out.println("✅ Pasajeros disponibles: " + flightController.getPassengersTree().size());
