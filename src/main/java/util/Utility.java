@@ -440,6 +440,17 @@ public class Utility {
 
     //-------------------- Métodos para Proyecto --------------------
 
+
+    public static boolean isNumber(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+
 /*
     public static DoublyLinkedList getAirportList() {
         return airportsList;

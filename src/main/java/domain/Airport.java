@@ -11,7 +11,7 @@ public class Airport {
     public Status status;
 
     @Expose
-    private SinglyLinkedList departuresBoard;
+    private transient SinglyLinkedList departuresBoard;
 
     //Constructor
     public Airport(int code, String name, String country, Status status) {
