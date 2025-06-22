@@ -13,6 +13,7 @@ import ucr.project.HelloApplication;
 import util.FXUtility;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * Controlador para la ventana de login
@@ -118,6 +119,8 @@ public class LoginController {
 
             // Obtener el stage actual
             Stage currentStage = (Stage) btnLogin.getScene().getWindow();
+            String css = Objects.requireNonNull(HelloApplication.class.getResource("combined-styles.css")).toExternalForm();
+            scene.getStylesheets().add(css);
 
             // Configurar la nueva escena
             currentStage.setTitle("Sistema de Gestión de Aeropuertos - " + user.getRole().getDisplayName());

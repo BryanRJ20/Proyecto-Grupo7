@@ -229,6 +229,26 @@ public class SinglyLinkedList implements List{
         return null; //si llega aqui es xq no encontro el index
     }
 
+    public Object get(int index) throws ListException {
+        if(isEmpty()){
+            throw new ListException("Singly Linked List is Empty");
+        }
+        if (index < 0 || index > size()) {
+            throw new ListException("Invalid index: " + index);
+        }
+
+        Node aux = first;
+        int i = 0;
+        while(aux != null){
+            if(util.Utility.compare(i, index) == 0) {
+                return aux.data;
+            }
+            i++;
+            aux = aux.next;
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         //String result = "Singly Linked List Content\n\n";

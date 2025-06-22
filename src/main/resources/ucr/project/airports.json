@@ -58,5 +58,66 @@
     "name": "Toronto Pearson International Airport",
     "country": "Canadá",
     "status": "ACTIVE"
+  },
+  {
+    "code": 1011,
+    "name": "Changi Airport",
+    "country": "Singapur",
+    "status": "ACTIVE"
+  },
+  {
+    "code": 1012,
+    "name": "Incheon International Airport",
+    "country": "Corea del Sur",
+    "status": "ACTIVE"
+  },
+  {
+    "code": 1013,
+    "name": "Amsterdam Schiphol Airport",
+    "country": "Países Bajos",
+    "status": "INACTIVE"
+  },
+  {
+    "code": 1014,
+    "name": "Madrid-Barajas Adolfo Suárez Airport",
+    "country": "España",
+    "status": "ACTIVE"
+  },
+  {
+    "code": 1015,
+    "name": "Beijing Capital International Airport",
+    "country": "China",
+    "status": "ACTIVE"
+  },
+  {
+    "code": 1016,
+    "name": "O. R. Tambo International Airport",
+    "country": "Sudáfrica",
+    "status": "INACTIVE"
+  },
+  {
+    "code": 1017,
+    "name": "Los Angeles International Airport",
+    "country": "Estados Unidos",
+    "status": "ACTIVE"
+  },
+  {
+    "code": 1018,
+    "name": "Munich Airport",
+    "country": "Alemania",
+    "status": "ACTIVE"
+  },
+  {
+    "code": 1019,
+    "name": "Zurich Airport",
+    "country": "Suiza",
+    "status": "INACTIVE"
+  },
+  {
+    "code": 1020,
+    "name": "Benito Juárez International Airport",
+    "country": "México",
+    "status": "ACTIVE"
   }
+
 ]

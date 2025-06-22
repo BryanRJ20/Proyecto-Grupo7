@@ -1,6 +1,7 @@
 package domain.graph;
 
 import domain.*;
+import domain.EdgeWeight;
 import domain.tree.*;
 import domain.AdjacencyListGraph;
 import domain.GraphException;

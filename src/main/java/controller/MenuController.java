@@ -51,7 +51,10 @@ public class MenuController {
 
     @javafx.fxml.FXML
     public void passengers(ActionEvent actionEvent) {
-        // Implementación pendiente
+        try {
+            load("passengers-view.fxml");
+        } catch (Exception e) {showCompactError("Error", "Error cargando pasajeros: " + e.getMessage());}
+
     }
 
     @javafx.fxml.FXML
@@ -80,6 +83,7 @@ public class MenuController {
             load("airports-view.fxml");
         } catch (Exception e) {showCompactError("Error", "Error cargando aeropuertos: " + e.getMessage());}
     }
+
 
 
     public void load(String form) {
