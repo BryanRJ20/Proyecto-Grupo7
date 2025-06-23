@@ -23,6 +23,7 @@ module ucr.project {
     opens domain.list to com.google.gson;
     opens domain.tree to com.google.gson;
     opens domain.security to com.google.gson;
+    opens controller to com.google.gson;
 
     // Opens para JavaFX FXML
     opens ucr.project to javafx.fxml;

@@ -63,7 +63,7 @@ public class UserController {
         try {
             load("user-reservations-view.fxml");
         } catch (Exception e) {
-            FXUtility.showMessage("Reservas", "Funcionalidad de reservas disponible.\nPuede hacer reservas de vuelos y consultar sus reservaciones existentes.");
+            FXUtility.showErrorAlert("Error", "Error cargando reservas: " + e.getMessage());
         }
     }
 
@@ -72,7 +72,7 @@ public class UserController {
         try {
             load("user-flights-view.fxml");
         } catch (Exception e) {
-            FXUtility.showMessage("Vuelos", "Funcionalidad de consulta de vuelos disponible.\nPuede consultar vuelos disponibles y horarios.");
+            FXUtility.showErrorAlert("Error", "Error cargando vuelos: " + e.getMessage());
         }
     }
 
@@ -81,7 +81,7 @@ public class UserController {
         try {
             load("user-history-view.fxml");
         } catch (Exception e) {
-            FXUtility.showMessage("Historial", "Funcionalidad de historial disponible.\nPuede consultar su historial de vuelos y reservaciones.");
+            FXUtility.showErrorAlert("Error", "Error cargando historial: " + e.getMessage());
         }
     }
 
