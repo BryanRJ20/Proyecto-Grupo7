@@ -178,7 +178,7 @@ public class UserHistoryController {
 
             record.setStatus(statuses[random.nextInt(statuses.length)]);
             record.setPrice("$" + (200 + random.nextInt(800)));
-            record.setSeat((1 + random.nextInt(30)) + (char)('A' + random.nextInt(6)));
+            record.setSeat((1 + random.nextInt(30)) + String.valueOf((char)('A' + random.nextInt(6))));
 
             allRecords.add(record);
         }
