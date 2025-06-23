@@ -1,9 +1,7 @@
 package controller;
 
-import controller.FlightController;
 import domain.security.AuthenticationService;
 import domain.security.User;
-import simulation.SimulationRunner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,16 +25,11 @@ public class HelloController {
     private Label welcomeLabel;
 
     private AuthenticationService authService;
-    private FlightController flightController;
-    private SimulationRunner simulationRunner;
 
     @FXML
     public void initialize() {
         authService = AuthenticationService.getInstance();
-        flightController = new FlightController();
-        simulationRunner = new SimulationRunner();
 
-        // Verificar si hay un usuario autenticado
         if (authService.isAuthenticated()) {
             User currentUser = authService.getCurrentUser();
             if (welcomeLabel != null) {
@@ -110,7 +103,6 @@ public class HelloController {
 
     @FXML
     public void exit(ActionEvent actionEvent) {
-        // Cerrar sesión y volver al login
         authService.logout();
         FXUtility.showMessage("Sesión Cerrada", "Has cerrado sesión exitosamente");
         loadLoginWindow();
@@ -121,10 +113,8 @@ public class HelloController {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
-            // Obtener el stage actual
             Stage currentStage = (Stage) bp.getScene().getWindow();
 
-            // Configurar la nueva escena
             currentStage.setTitle("Sistema de Gestión de Aeropuertos - Login");
             currentStage.setScene(scene);
             currentStage.setResizable(false);

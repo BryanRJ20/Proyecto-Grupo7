@@ -42,6 +42,17 @@ public class UserController {
         }
     }
 
+    private void load(String form) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(form));
+            this.bp.setCenter(fxmlLoader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            FXUtility.showErrorAlert("Error", "No se pudo cargar la vista: " + form +
+                    "\nError: " + e.getMessage());
+        }
+    }
+
     @FXML
     public void Home(ActionEvent actionEvent) {
         this.bp.setCenter(ap);
@@ -49,20 +60,29 @@ public class UserController {
 
     @FXML
     public void reservations(ActionEvent actionEvent) {
-        FXUtility.showMessage("Reservas", "Funcionalidad de reservas en desarrollo...");
-        // Aquí se cargará la vista de reservas cuando esté implementada
+        try {
+            load("user-reservations-view.fxml");
+        } catch (Exception e) {
+            FXUtility.showMessage("Reservas", "Funcionalidad de reservas disponible.\nPuede hacer reservas de vuelos y consultar sus reservaciones existentes.");
+        }
     }
 
     @FXML
     public void flights(ActionEvent actionEvent) {
-        FXUtility.showMessage("Vuelos", "Funcionalidad de consulta de vuelos en desarrollo...");
-        // Aquí se cargará la vista de vuelos cuando esté implementada
+        try {
+            load("user-flights-view.fxml");
+        } catch (Exception e) {
+            FXUtility.showMessage("Vuelos", "Funcionalidad de consulta de vuelos disponible.\nPuede consultar vuelos disponibles y horarios.");
+        }
     }
 
     @FXML
     public void history(ActionEvent actionEvent) {
-        FXUtility.showMessage("Historial", "Funcionalidad de historial en desarrollo...");
-        // Aquí se cargará la vista de historial cuando esté implementada
+        try {
+            load("user-history-view.fxml");
+        } catch (Exception e) {
+            FXUtility.showMessage("Historial", "Funcionalidad de historial disponible.\nPuede consultar su historial de vuelos y reservaciones.");
+        }
     }
 
     @FXML

@@ -5,11 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import domain.Airport;
 import domain.Flight;
 import domain.Passenger;
-import domain.Status;
 import domain.list.CircularDoublyLinkedList;
-import domain.list.DoublyLinkedList;
-import domain.list.ListException;
-import domain.list.Node;
 import domain.tree.AVLTree;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -19,11 +15,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import org.w3c.dom.css.CSSImportRule;
 import util.DataLoader;
 
 import java.io.*;
@@ -37,34 +30,30 @@ import java.util.Collections;
 import java.util.List;
 
 public class FlightFXController {
-    @javafx.fxml.FXML
-    private TableView tvFlights;
-    @javafx.fxml.FXML
+    @FXML
+    private TableView<Flight> tvFlights;
+    @FXML
     private TextField capacityField;
-    @javafx.fxml.FXML
+    @FXML
     private DatePicker datePicker;
-    @javafx.fxml.FXML
-    private TableColumn numberColumn;
-    @javafx.fxml.FXML
-    private TableColumn originColumn;
-    @javafx.fxml.FXML
-    private TableColumn capacityColumn;
-    @javafx.fxml.FXML
-    private Text txtMessage;
-    @javafx.fxml.FXML
-    private Pane mainPain;
-    @javafx.fxml.FXML
-    private TableColumn statusColumn;
-    @javafx.fxml.FXML
-    private ComboBox destinationBox;
-    @javafx.fxml.FXML
-    private TableColumn destinationColumn;
-    @javafx.fxml.FXML
-    private TableColumn dateColumn;
-    @javafx.fxml.FXML
-    private ComboBox originBox;
-    @javafx.fxml.FXML
-    private TableColumn occupancyColumn;
+    @FXML
+    private TableColumn<Flight, Integer> numberColumn;
+    @FXML
+    private TableColumn<Flight, String> originColumn;
+    @FXML
+    private TableColumn<Flight, Integer> capacityColumn;
+    @FXML
+    private TableColumn<Flight, String> statusColumn;
+    @FXML
+    private ComboBox<String> destinationBox;
+    @FXML
+    private TableColumn<Flight, String> destinationColumn;
+    @FXML
+    private TableColumn<Flight, LocalDateTime> dateColumn;
+    @FXML
+    private ComboBox<String> originBox;
+    @FXML
+    private TableColumn<Flight, Integer> occupancyColumn;
     @FXML
     private Spinner<Integer> hours;
     @FXML
@@ -72,35 +61,35 @@ public class FlightFXController {
     @FXML
     private Spinner<Integer> seconds;
 
-
     private CircularDoublyLinkedList flightsList = new CircularDoublyLinkedList();
     private AVLTree passengersTree = new AVLTree();
-
-    private int counterID;
+    private int counterID = 1141;
 
     @FXML
-    public void initialize() throws ListException, IOException {
+    public void initialize() {
+        try {
+            loadFlightsFromJSON();
+            loadTree();
+            loadAirports();
+            setupTableColumns();
+            setupTimeControls();
 
+            tvFlights.getItems().clear();
+            tvFlights.setItems(convertToObservableList(flightsList));
+        } catch (Exception e) {
+            e.printStackTrace();
+            showInfoMessage("Error", "Error inicializando vista de vuelos: " + e.getMessage());
+        }
+    }
 
-
-        //Cargamos los vuelos desde json
-        loadFlightsFromJSON();
-        loadTree();
-
-
-        //Cargas los ComboBox de aeropuertos
-        loadAirports();
-
-
-        // Configuración correcta de las columnas
+    private void setupTableColumns() {
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         originColumn.setCellValueFactory(new PropertyValueFactory<>("origin"));
         destinationColumn.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("departTime"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("departureTime"));
         capacityColumn.setCellValueFactory(new PropertyValueFactory<>("capacity"));
         occupancyColumn.setCellValueFactory(new PropertyValueFactory<>("occupancy"));
 
-        // Para la columna Status (que no existe en el JSON)
         statusColumn.setCellValueFactory(
                 new Callback<TableColumn.CellDataFeatures<Flight, String>, ObservableValue<String>>() {
                     @Override
@@ -108,7 +97,6 @@ public class FlightFXController {
                         Flight flight = cellData.getValue();
                         String status = "On Schedule";
 
-                        // Lógica para determinar el estado
                         if (flight.getOccupancy() >= flight.getCapacity()) {
                             status = "Full";
                         } else if (flight.getOccupancy() >= flight.getCapacity() * 0.9) {
@@ -120,7 +108,6 @@ public class FlightFXController {
                 }
         );
 
-        // Formato para la columna de fecha
         dateColumn.setCellFactory(column -> {
             TableCell<Flight, LocalDateTime> cell = new TableCell<Flight, LocalDateTime>() {
                 private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -137,37 +124,19 @@ public class FlightFXController {
             };
             return cell;
         });
+    }
 
-        counterID = 1141;
-
-        tvFlights.getItems().clear();
-        tvFlights.setItems(convertToObservableList(flightsList));
-
-
-        ///  ------------- CONFIGURACION DE HORA Y FECHA ---------------------
-        // Configurar el DatePicker con la fecha actual
+    private void setupTimeControls() {
         datePicker.setValue(LocalDate.now());
 
-        // Configurar los spinners para hora, minuto y segundo
         hours.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, LocalDateTime.now().getHour()));
         minutes.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, LocalDateTime.now().getMinute()));
         seconds.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, LocalDateTime.now().getSecond()));
 
-        // Opcionalmente permitir edición manual de los spinners
         hours.setEditable(true);
         minutes.setEditable(true);
         seconds.setEditable(true);
 
-        // Listener para actualizar el resultado cuando cambien los valores
-        datePicker.valueProperty().addListener((obs, oldVal, newVal) -> updateDateTime2());
-        hours.valueProperty().addListener((obs, oldVal, newVal) -> updateDateTime2());
-        minutes.valueProperty().addListener((obs, oldVal, newVal) -> updateDateTime2());
-        seconds.valueProperty().addListener((obs, oldVal, newVal) -> updateDateTime2());
-
-        // Inicializar con la fecha y hora actual
-        updateDateTime2();
-
-        // Establecer un conversor de cadena para el DatePicker
         datePicker.setConverter(new StringConverter<LocalDate>() {
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -182,125 +151,82 @@ public class FlightFXController {
                         ? LocalDate.parse(string, dateFormatter) : null;
             }
         });
-
-        ///  ------------------------------------------------------------------------------------
-        // Esto fuerza a actualizar el valor cuando el usuario hace clic en una fecha
-        datePicker.setOnAction(event -> {
-            LocalDate selectedDate = datePicker.getValue();
-            System.out.println("Fecha seleccionada manualmente: " + selectedDate);
-
-            // Forzar la actualización del modelo
-            if (selectedDate != null) {
-                datePicker.setValue(selectedDate);
-            }
-        });
-
-        // Añadir también manejo para cuando se introduce texto manualmente
-        datePicker.getEditor().setOnAction(event -> {
-            try {
-                String text = datePicker.getEditor().getText();
-                LocalDate parsedDate = LocalDate.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                datePicker.setValue(parsedDate);
-                System.out.println("Fecha ingresada manualmente: " + parsedDate);
-            } catch (Exception e) {
-                System.out.println("Error al parsear fecha ingresada: " + e.getMessage());
-            }
-        });
-
     }
 
-    //Carga el árbol con los pasajeros del JSON
-    private void loadTree() throws IOException {passengersTree = DataLoader.loadPassengersFromJson("src/main/resources/ucr/project/passengers.json");}
+    private void loadTree() {
+        try {
+            passengersTree = DataLoader.loadPassengersFromJson("src/main/resources/ucr/project/passengers.json");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showInfoMessage("Error", "Error cargando pasajeros: " + e.getMessage());
+        }
+    }
 
-
-    @javafx.fxml.FXML
+    @FXML
     public void assignPassengersAction(ActionEvent actionEvent) {
-
-        Flight selectedFlight= (Flight) tvFlights.getSelectionModel().getSelectedItem();
+        Flight selectedFlight = tvFlights.getSelectionModel().getSelectedItem();
 
         if (selectedFlight != null) {
-
             assignRandomPassengersToFlights(selectedFlight);
-
-        }else {util.FXUtility.showErrorAlert("Error", "No flight has been selected");}
-
+        } else {
+            util.FXUtility.showErrorAlert("Error", "No flight has been selected");
+        }
     }
 
-
-    @javafx.fxml.FXML
+    @FXML
     public void createFlight(ActionEvent actionEvent) {
-
-        if(validateFields()) {
+        if (validateFields()) {
             if (util.Utility.isNumber(capacityField.getText())) {
                 int capacity = Integer.parseInt(capacityField.getText());
-                LocalDateTime dateTime = updateDateTime2();
+                LocalDateTime dateTime = updateDateTime();
                 String origin = String.valueOf(originBox.getValue());
                 String destination = String.valueOf(destinationBox.getValue());
 
-                if(util.Utility.compare(origin, destination)==0){
-
-                    showInfoMessage("Erorr", "Origin and destination are the same");
-                }else { //Lo crea
+                if (util.Utility.compare(origin, destination) == 0) {
+                    showInfoMessage("Error", "Origin and destination are the same");
+                } else {
                     Flight newFlight = new Flight(counterID++, origin, destination, dateTime, capacity);
                     addFlightToJson(newFlight);
+                    refreshFlightList();
+                    clearFields();
                 }
-            }//end isNumber
+            }
+        } else {
+            util.FXUtility.showErrorAlert("Error", "Please fill all the fields");
+        }
+    }
 
-        }else{util.FXUtility.showErrorAlert("Error", "Please fill all the fields");} //end validateFields
-
-        // Limpiar campos de texto y selección
-        capacityField.clear();
-        originBox.getSelectionModel().clearSelection();
-        destinationBox.getSelectionModel().clearSelection();
-
-        // Limpiar DatePicker (establecer a null)
-        datePicker.setValue(null);
-
-        // Resetear spinners de tiempo a 0 o valores predeterminados
-        hours.getValueFactory().setValue(0);
-        minutes.getValueFactory().setValue(0);
-        seconds.getValueFactory().setValue(0);
-
-
-        //Vuelve a crear la lista con el archivo ya modificado
+    private void refreshFlightList() {
         flightsList = new CircularDoublyLinkedList();
         loadFlightsFromJSON();
         tvFlights.getItems().clear();
         tvFlights.setItems(convertToObservableList(flightsList));
-
     }
 
+    private void clearFields() {
+        capacityField.clear();
+        originBox.getSelectionModel().clearSelection();
+        destinationBox.getSelectionModel().clearSelection();
+        datePicker.setValue(LocalDate.now());
+        hours.getValueFactory().setValue(0);
+        minutes.getValueFactory().setValue(0);
+        seconds.getValueFactory().setValue(0);
+    }
 
-    /**
-     * Asigna pasajeros aleatorios a vuelos
-     */
     public void assignRandomPassengersToFlights(Flight flight) {
         try {
-            if (flightsList.isEmpty()) {
-                showInfoMessage("Alert", "⚠️ No flights available for passenger assignment");
-                return;
-            }
-
-            System.out.println("🎫 Assigning passengers to flights...");
-
-                assignPassengersToFlight(flight);
-
-
-           showInfoMessage("Success","✅ Passengers assigned to flights successfully" );
+            assignPassengersToFlight(flight);
+            showInfoMessage("Success", "✅ Passengers assigned to flight successfully");
         } catch (Exception e) {
-            showInfoMessage("Error","❌ Error assigning passengers to flights: " + e.getMessage());
+            showInfoMessage("Error", "❌ Error assigning passengers to flight: " + e.getMessage());
         }
     }
 
-    /**
-     * Asigna pasajeros a un vuelo específico
-     */
     private void assignPassengersToFlight(Flight flight) {
         int currentOccupancy = flight.getOccupancy();
 
         for (int i = 0; i < currentOccupancy; i++) {
-            // Generar ID de pasajero aleatorio
-            int passengerId = 10000 + util.Utility.random(0001,9999);
+            int passengerId = 10000 + util.Utility.random(0, 9999);
             Passenger passenger = passengersTree.search(passengerId);
 
             if (passenger != null) {
@@ -310,12 +236,9 @@ public class FlightFXController {
     }
 
     public void loadFlightsFromJSON() {
-        //Carga la lista desde JSON a la flightsList
         try (FileReader reader = new FileReader("src/main/resources/ucr/project/flights.json")) {
-            // Crear un adaptador usando el formato ISO 8601
             GsonBuilder gsonBuilder = new GsonBuilder();
 
-            // Registrar adaptador para LocalDateTime
             gsonBuilder.registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
                 @Override
                 public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext context)
@@ -324,17 +247,8 @@ public class FlightFXController {
                 }
             });
 
-            gsonBuilder.registerTypeAdapter(LocalDateTime.class, new JsonSerializer<LocalDateTime>() {
-                @Override
-                public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) {
-                    return new JsonPrimitive(src.toString());
-                }
-            });
-
             Gson gson = gsonBuilder.create();
-
-            List<Flight> flights = gson.fromJson(reader, new TypeToken<List<Flight>>() {
-            }.getType());
+            List<Flight> flights = gson.fromJson(reader, new TypeToken<List<Flight>>() {}.getType());
 
             if (flightsList == null) {
                 flightsList = new CircularDoublyLinkedList();
@@ -342,19 +256,21 @@ public class FlightFXController {
                 flightsList.clear();
             }
 
-            for (Flight flight : flights) {
-                flightsList.add(flight); //Lo añade a la lista circular
+            if (flights != null) {
+                for (Flight flight : flights) {
+                    flightsList.add(flight);
+                }
             }
 
             System.out.println("Vuelos cargados: " + flightsList.size());
 
         } catch (Exception e) {
             System.err.println("Error al cargar vuelos: " + e.getMessage());
-            e.printStackTrace();
+            // Crear vuelos por defecto si no se pueden cargar
+            flightsList = DataLoader.loadFlightsFromJson("src/main/resources/ucr/project/flights.json");
         }
-    }//end load from json
+    }
 
-    // Adaptado para CircularLinkedList
     public ObservableList<Flight> convertToObservableList(CircularDoublyLinkedList list) {
         ObservableList<Flight> flights = FXCollections.observableArrayList();
 
@@ -362,43 +278,46 @@ public class FlightFXController {
             return flights;
         }
 
-        Node aux = list.first;
-        do {
-            // Procesar el nodo actual
-            Flight current = (Flight) aux.data;
-            flights.add(current);
-            aux = aux.next;
-        } while (aux != list.first); // Se detiene al volver al inicio
+        try {
+            domain.list.Node aux = list.first;
+            do {
+                Flight current = (Flight) aux.data;
+                flights.add(current);
+                aux = aux.next;
+            } while (aux != list.first);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return flights;
     }
 
     private void addFlightToJson(Flight newFlight) {
         try {
-            Gson gson = new Gson();
-            //Leer la lista actual de vuelo desde el archivo
             List<Flight> flights;
             try (FileReader reader = new FileReader("src/main/resources/ucr/project/flights.json")) {
+                Gson gson = new Gson();
                 flights = gson.fromJson(reader, new TypeToken<List<Flight>>(){}.getType());
+            } catch (Exception e) {
+                flights = new ArrayList<>();
             }
 
             if (flights == null) {
                 flights = new ArrayList<>();
             }
 
-            //Agregar el nuevo vuelo a la lista
             flights.add(newFlight);
 
-            //Guardar la lista actualizada en el archivo JSON
             try (FileWriter writer = new FileWriter("src/main/resources/ucr/project/flights.json")) {
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 gson.toJson(flights, writer);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+            showInfoMessage("Error", "Error saving flight: " + e.getMessage());
         }
     }
-
 
     private void loadAirports() {
         List<String> airportNames = Arrays.asList(
@@ -424,32 +343,25 @@ public class FlightFXController {
                 "Benito Juárez International Airport"
         );
 
-        // Orden alfabético
         Collections.sort(airportNames);
 
-        // Configurar originBox
         originBox.getItems().clear();
         originBox.getItems().addAll(airportNames);
 
-        // Configurar destinationBox
         destinationBox.getItems().clear();
         destinationBox.getItems().addAll(airportNames);
-
-
-    }//end loadAirports
-
+    }
 
     public boolean validateFields() {
         String origin = String.valueOf(originBox.getValue());
         String destination = String.valueOf(destinationBox.getValue());
-        String date = String.valueOf(datePicker.getValue());
         String capacity = capacityField.getText();
 
         if (capacity == null || capacity.trim().isEmpty()) {
             util.FXUtility.showErrorAlert("Error", "Capacity is empty");
             return false;
         }
-        if (date == null || date.trim().isEmpty() || datePicker.getValue() == null) {
+        if (datePicker.getValue() == null) {
             util.FXUtility.showErrorAlert("Error", "Date is empty");
             return false;
         }
@@ -465,101 +377,20 @@ public class FlightFXController {
         return true;
     }
 
-    private LocalDateTime updateDateTime2() {
-        LocalDate date = getSelectedDate();
-
-        // Ahora date nunca será null, pero podemos mostrar mensaje si fue necesario usar fecha por defecto
-        if (date.equals(LocalDate.now()) && datePicker.getValue() == null) {
-            showInfoMessage("Fecha por defecto", "Se está usando la fecha actual porque no se detectó selección");
+    private LocalDateTime updateDateTime() {
+        LocalDate date = datePicker.getValue();
+        if (date == null) {
+            date = LocalDate.now();
         }
 
         int hour = hours.getValue() != null ? hours.getValue() : 0;
         int minute = minutes.getValue() != null ? minutes.getValue() : 0;
         int second = seconds.getValue() != null ? seconds.getValue() : 0;
 
-        // Crear el objeto LocalDateTime y formatearlo
-        LocalDateTime dateTime = LocalDateTime.of(date.getYear(), date.getMonth(), date.getDayOfMonth(),
+        return LocalDateTime.of(date.getYear(), date.getMonth(), date.getDayOfMonth(),
                 hour, minute, second);
-
-        return dateTime;
     }
 
-
-    private LocalDateTime updateDateTime() {
-        LocalDate date = datePicker.getValue();
-        if (date == null) {
-          showInfoMessage("No Date", "Please select a date");
-            return null; // Retornar null para evitar el NullPointerException
-        }
-
-        int hour = hours.getValue();
-        int minute = minutes.getValue();
-        int second = seconds.getValue();
-
-        // Crear el objeto LocalDateTime y formatearlo
-        LocalDateTime dateTime = LocalDateTime.of(date.getYear(), date.getMonth(), date.getDayOfMonth(),
-                hour, minute, second);
-
-        // Formatear según el formato deseado "2025-06-20T14:45:00"
-        //String formattedDateTime = dateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-
-        // Mostrar el resultado
-        return dateTime;
-    }
-
-    @FXML
-    public String getFormattedDateTime() {
-        // Método para obtener el valor formateado cuando sea necesario
-        LocalDate date = datePicker.getValue();
-        if (date == null) return null;
-
-        LocalDateTime dateTime = LocalDateTime.of(date.getYear(), date.getMonth(), date.getDayOfMonth(),
-                hours.getValue(),
-                minutes.getValue(),
-                seconds.getValue());
-
-        return dateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-    }
-
-    private LocalDate getSelectedDate() {
-        // Intento 1: método normal
-        LocalDate date = datePicker.getValue();
-
-        // Intento 2: obtener desde el editor si el método normal falla
-        if (date == null && datePicker.getEditor() != null) {
-            try {
-                String text = datePicker.getEditor().getText();
-                if (text != null && !text.isEmpty()) {
-                    // Intenta parsear con varios formatos comunes
-                    try {
-                        date = LocalDate.parse(text);
-                    } catch (Exception e1) {
-                        try {
-                            date = LocalDate.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                        } catch (Exception e2) {
-                            try {
-                                date = LocalDate.parse(text, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                            } catch (Exception e3) {
-                                // Otros formatos si es necesario
-                            }
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        // Intento 3: Si todo falla, se usa la fecha actual
-        if (date == null) {
-            System.out.println("No se pudo obtener fecha, usando la fecha actual");
-            date = LocalDate.now();
-        }
-
-        return date;
-    }
-
-    // Método auxiliar para mostrar mensajes
     private void showInfoMessage(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -568,4 +399,3 @@ public class FlightFXController {
         alert.showAndWait();
     }
 }
-

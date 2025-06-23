@@ -33,13 +33,13 @@
     "code": 1006,
     "name": "São Paulo–Guarulhos International Airport",
     "country": "Brasil",
-    "status": "INACTIVE"
+    "status": "ACTIVE"
   },
   {
     "code": 1007,
     "name": "Sydney Kingsford Smith Airport",
     "country": "Australia",
-    "status": "INACTIVE"
+    "status": "ACTIVE"
   },
   {
     "code": 1008,
@@ -51,7 +51,7 @@
     "code": 1009,
     "name": "Dubai International Airport",
     "country": "Emiratos Árabes Unidos",
-    "status": "INACTIVE"
+    "status": "ACTIVE"
   },
   {
     "code": 1010,
@@ -75,7 +75,7 @@
     "code": 1013,
     "name": "Amsterdam Schiphol Airport",
     "country": "Países Bajos",
-    "status": "INACTIVE"
+    "status": "ACTIVE"
   },
   {
     "code": 1014,
@@ -93,7 +93,7 @@
     "code": 1016,
     "name": "O. R. Tambo International Airport",
     "country": "Sudáfrica",
-    "status": "INACTIVE"
+    "status": "ACTIVE"
   },
   {
     "code": 1017,
@@ -111,7 +111,7 @@
     "code": 1019,
     "name": "Zurich Airport",
     "country": "Suiza",
-    "status": "INACTIVE"
+    "status": "ACTIVE"
   },
   {
     "code": 1020,
@@ -119,5 +119,4 @@
     "country": "México",
     "status": "ACTIVE"
   }
-
 ]

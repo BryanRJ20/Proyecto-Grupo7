@@ -1,323 +1,92 @@
 [
   {
     "number": 1101,
-    "origin": "JFK",
-    "destination": "Toronto Pearson",
-    "departureTime": "2025-06-15T09:00:00",
+    "origin": "Aeropuerto Internacional Juan Santamaría",
+    "destination": "John F. Kennedy International Airport",
+    "departureTime": "2025-06-25T09:00:00",
     "capacity": 180,
-    "occupancy": 150
+    "occupancy": 150,
+    "status": "SCHEDULED"
   },
   {
     "number": 1102,
-    "origin": "Heathrow",
-    "destination": "Charles de Gaulle",
-    "departureTime": "2025-06-20T14:45:00",
+    "origin": "London Heathrow Airport",
+    "destination": "Charles de Gaulle Airport",
+    "departureTime": "2025-06-26T14:45:00",
     "capacity": 160,
-    "occupancy": 120
+    "occupancy": 120,
+    "status": "SCHEDULED"
   },
   {
     "number": 1103,
-    "origin": "Charles de Gaulle",
-    "destination": "Frankfurt",
-    "departureTime": "2025-06-21T10:00:00",
+    "origin": "Charles de Gaulle Airport",
+    "destination": "Frankfurt am Main Airport",
+    "departureTime": "2025-06-27T10:00:00",
     "capacity": 150,
-    "occupancy": 140
+    "occupancy": 140,
+    "status": "SCHEDULED"
   },
   {
     "number": 1104,
-    "origin": "Madrid Barajas",
-    "destination": "Haneda",
+    "origin": "Madrid-Barajas Adolfo Suárez Airport",
+    "destination": "Tokyo Haneda Airport",
     "departureTime": "2025-07-01T23:30:00",
     "capacity": 200,
-    "occupancy": 190
+    "occupancy": 190,
+    "status": "SCHEDULED"
   },
   {
     "number": 1105,
-    "origin": "Toronto Pearson",
-    "destination": "JFK",
-    "departureTime": "2025-06-19T08:00:00",
+    "origin": "Toronto Pearson International Airport",
+    "destination": "John F. Kennedy International Airport",
+    "departureTime": "2025-06-28T08:00:00",
     "capacity": 170,
-    "occupancy": 160
+    "occupancy": 160,
+    "status": "SCHEDULED"
   },
   {
     "number": 1106,
-    "origin": "Juan Santamaría",
-    "destination": "JFK",
-    "departureTime": "2025-06-18T13:15:00",
+    "origin": "Aeropuerto Internacional Juan Santamaría",
+    "destination": "John F. Kennedy International Airport",
+    "departureTime": "2025-06-29T13:15:00",
     "capacity": 180,
-    "occupancy": 155
+    "occupancy": 155,
+    "status": "SCHEDULED"
   },
   {
     "number": 1107,
-    "origin": "São Paulo–Guarulhos",
-    "destination": "Haneda",
-    "departureTime": "2025-06-25T22:00:00",
+    "origin": "São Paulo–Guarulhos International Airport",
+    "destination": "Tokyo Haneda Airport",
+    "departureTime": "2025-06-30T22:00:00",
     "capacity": 200,
-    "occupancy": 190
+    "occupancy": 190,
+    "status": "SCHEDULED"
   },
   {
     "number": 1108,
-    "origin": "Frankfurt",
-    "destination": "JFK",
-    "departureTime": "2025-06-22T07:45:00",
+    "origin": "Frankfurt am Main Airport",
+    "destination": "John F. Kennedy International Airport",
+    "departureTime": "2025-07-02T07:45:00",
     "capacity": 190,
-    "occupancy": 170
+    "occupancy": 170,
+    "status": "SCHEDULED"
   },
-
   {
     "number": 1109,
-    "origin": "Sydney",
-    "destination": "Tokyo Haneda",
-    "departureTime": "2025-06-23T05:00:00",
+    "origin": "Sydney Kingsford Smith Airport",
+    "destination": "Tokyo Haneda Airport",
+    "departureTime": "2025-07-03T05:00:00",
     "capacity": 180,
-    "occupancy": 165
+    "occupancy": 165,
+    "status": "SCHEDULED"
   },
   {
     "number": 1110,
-    "origin": "JFK",
-    "destination": "London Heathrow",
-    "departureTime": "2025-06-24T16:00:00",
+    "origin": "John F. Kennedy International Airport",
+    "destination": "London Heathrow Airport",
+    "departureTime": "2025-07-04T16:00:00",
     "capacity": 190,
-    "occupancy": 170
-  },
-  {
-    "number": 1111,
-    "origin": "Heathrow",
-    "destination": "Dubai",
-    "departureTime": "2025-06-25T09:30:00",
-    "capacity": 200,
-    "occupancy": 180
-  },
-  {
-    "number": 1112,
-    "origin": "Charles de Gaulle",
-    "destination": "Tokyo Haneda",
-    "departureTime": "2025-06-26T12:15:00",
-    "capacity": 180,
-    "occupancy": 170
-  },
-  {
-    "number": 1113,
-    "origin": "Toronto Pearson",
-    "destination": "São Paulo–Guarulhos",
-    "departureTime": "2025-06-27T08:00:00",
-    "capacity": 170,
-    "occupancy": 150
-  },
-  {
-    "number": 1114,
-    "origin": "Frankfurt",
-    "destination": "Charles de Gaulle",
-    "departureTime": "2025-06-27T17:00:00",
-    "capacity": 160,
-    "occupancy": 140
-  },
-  {
-    "number": 1115,
-    "origin": "Haneda",
-    "destination": "JFK",
-    "departureTime": "2025-06-28T00:00:00",
-    "capacity": 200,
-    "occupancy": 190
-  },
-  {
-    "number": 1116,
-    "origin": "Juan Santamaría",
-    "destination": "Madrid Barajas",
-    "departureTime": "2025-06-29T15:45:00",
-    "capacity": 170,
-    "occupancy": 130
-  },
-  {
-    "number": 1117,
-    "origin": "Madrid Barajas",
-    "destination": "Heathrow",
-    "departureTime": "2025-06-30T14:00:00",
-    "capacity": 150,
-    "occupancy": 130
-  },
-  {
-    "number": 1118,
-    "origin": "Tokyo Haneda",
-    "destination": "Frankfurt",
-    "departureTime": "2025-07-01T20:00:00",
-    "capacity": 200,
-    "occupancy": 195
-  },
-  {
-    "number": 1119,
-    "origin": "Dubai",
-    "destination": "Charles de Gaulle",
-    "departureTime": "2025-07-02T10:30:00",
-    "capacity": 180,
-    "occupancy": 160
-  },
-  {
-    "number": 1120,
-    "origin": "JFK",
-    "destination": "Dubai",
-    "departureTime": "2025-07-02T23:45:00",
-    "capacity": 200,
-    "occupancy": 200
-  },
-  {
-    "number": 1121,
-    "origin": "Frankfurt",
-    "destination": "Madrid Barajas",
-    "departureTime": "2025-07-03T07:15:00",
-    "capacity": 160,
-    "occupancy": 145
-  },
-  {
-    "number": 1122,
-    "origin": "Sydney",
-    "destination": "JFK",
-    "departureTime": "2025-07-03T22:00:00",
-    "capacity": 180,
-    "occupancy": 160
-  },
-  {
-    "number": 1123,
-    "origin": "Toronto Pearson",
-    "destination": "Frankfurt",
-    "departureTime": "2025-07-04T18:30:00",
-    "capacity": 170,
-    "occupancy": 150
-  },
-  {
-    "number": 1124,
-    "origin": "São Paulo–Guarulhos",
-    "destination": "JFK",
-    "departureTime": "2025-07-05T12:00:00",
-    "capacity": 200,
-    "occupancy": 180
-  },
-  {
-    "number": 1125,
-    "origin": "Madrid Barajas",
-    "destination": "Charles de Gaulle",
-    "departureTime": "2025-07-06T11:30:00",
-    "capacity": 160,
-    "occupancy": 130
-  },
-  {
-    "number": 1126,
-    "origin": "Haneda",
-    "destination": "Dubai",
-    "departureTime": "2025-07-06T23:15:00",
-    "capacity": 200,
-    "occupancy": 175
-  },
-  {
-    "number": 1127,
-    "origin": "Heathrow",
-    "destination": "Haneda",
-    "departureTime": "2025-07-07T06:00:00",
-    "capacity": 190,
-    "occupancy": 190
-  },
-  {
-    "number": 1128,
-    "origin": "Charles de Gaulle",
-    "destination": "Sydney",
-    "departureTime": "2025-07-08T13:00:00",
-    "capacity": 180,
-    "occupancy": 170
-  },
-  {
-    "number": 1129,
-    "origin": "Dubai",
-    "destination": "Frankfurt",
-    "departureTime": "2025-07-08T21:00:00",
-    "capacity": 200,
-    "occupancy": 195
-  },
-  {
-    "number": 1130,
-    "origin": "Juan Santamaría",
-    "destination": "Heathrow",
-    "departureTime": "2025-07-09T10:30:00",
-    "capacity": 180,
-    "occupancy": 175
-  },
-  {
-    "number": 1131,
-    "origin": "Frankfurt",
-    "destination": "Sydney",
-    "departureTime": "2025-07-09T23:30:00",
-    "capacity": 190,
-    "occupancy": 185
-  },
-  {
-    "number": 1132,
-    "origin": "JFK",
-    "destination": "Haneda",
-    "departureTime": "2025-07-10T08:00:00",
-    "capacity": 200,
-    "occupancy": 180
-  },
-  {
-    "number": 1133,
-    "origin": "Heathrow",
-    "destination": "Madrid Barajas",
-    "departureTime": "2025-07-10T16:15:00",
-    "capacity": 150,
-    "occupancy": 140
-  },
-  {
-    "number": 1134,
-    "origin": "Tokyo Haneda",
-    "destination": "Toronto Pearson",
-    "departureTime": "2025-07-11T13:00:00",
-    "capacity": 180,
-    "occupancy": 175
-  },
-  {
-    "number": 1135,
-    "origin": "Madrid Barajas",
-    "destination": "São Paulo–Guarulhos",
-    "departureTime": "2025-07-11T22:45:00",
-    "capacity": 200,
-    "occupancy": 190
-  },
-  {
-    "number": 1136,
-    "origin": "Haneda",
-    "destination": "Frankfurt",
-    "departureTime": "2025-07-12T05:30:00",
-    "capacity": 190,
-    "occupancy": 180
-  },
-  {
-    "number": 1137,
-    "origin": "Toronto Pearson",
-    "destination": "Sydney",
-    "departureTime": "2025-07-12T19:00:00",
-    "capacity": 200,
-    "occupancy": 190
-  },
-  {
-    "number": 1138,
-    "origin": "Heathrow",
-    "destination": "Dubai",
-    "departureTime": "2025-07-13T09:00:00",
-    "capacity": 180,
-    "occupancy": 175
-  },
-  {
-    "number": 1139,
-    "origin": "Frankfurt",
-    "destination": "Toronto Pearson",
-    "departureTime": "2025-07-14T08:30:00",
-    "capacity": 170,
-    "occupancy": 160
-  },
-  {
-    "number": 1140,
-    "origin": "Charles de Gaulle",
-    "destination": "JFK",
-    "departureTime": "2025-07-15T18:00:00",
-    "capacity": 180,
-    "occupancy": 170
+    "occupancy": 170,
+    "status": "SCHEDULED"
   }
 ]

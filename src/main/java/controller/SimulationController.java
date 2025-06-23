@@ -1,26 +1,20 @@
 package controller;
 
-import controller.FlightController;
 import domain.Airport;
 import domain.Flight;
 import domain.Passenger;
 import domain.graph.DijkstraAirportGraph;
 import domain.list.DoublyLinkedList;
-import domain.list.ListException;
 import domain.queue.LinkedQueue;
-import domain.queue.QueueException;
 import domain.stack.LinkedStack;
-import domain.stack.StackException;
 import domain.tree.AVLTree;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import simulation.SimulationRunner;
 import util.DataLoader;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
@@ -49,22 +43,17 @@ public class SimulationController {
     @FXML
     private Label statusLabel;
 
-    private FlightController flightController;
-    private SimulationRunner simulationRunner;
+    private controller.FlightController flightController;
     private Thread simulationThread;
     private boolean isSimulationRunning = false;
 
-    // Colas por aeropuerto para simulación
     private LinkedQueue[] airportQueues;
-    // Pilas por avión para historial
     private LinkedStack[] aircraftStacks;
 
     @FXML
     public void initialize() {
-        flightController = new FlightController();
-        simulationRunner = new SimulationRunner();
+        flightController = new controller.FlightController();
 
-        // Configurar ComboBox de tipos de simulación
         simulationTypeBox.getItems().addAll(
                 "Simulación Completa",
                 "Solo Carga de Datos",
@@ -74,17 +63,14 @@ public class SimulationController {
         );
         simulationTypeBox.setValue("Simulación Completa");
 
-        // Valores por defecto
         passengersField.setText("100");
         flightsField.setText("20");
 
-        // Estado inicial
         stopSimulationBtn.setDisable(true);
         statusLabel.setText("Listo para simular");
 
-        // Inicializar estructuras de datos
-        airportQueues = new LinkedQueue[20]; // Máximo 20 aeropuertos
-        aircraftStacks = new LinkedStack[50]; // Máximo 50 aviones
+        airportQueues = new LinkedQueue[20];
+        aircraftStacks = new LinkedStack[50];
 
         for (int i = 0; i < airportQueues.length; i++) {
             airportQueues[i] = new LinkedQueue();
@@ -94,17 +80,14 @@ public class SimulationController {
             aircraftStacks[i] = new LinkedStack();
         }
 
-        // Cargar datos iniciales
         loadInitialData();
     }
 
     private void loadInitialData() {
         try {
-            // Cargar aeropuertos
             DoublyLinkedList airports = DataLoader.loadAirportsFromJson("src/main/resources/ucr/project/airports.json");
             flightController.setAirportsList(airports);
 
-            // Cargar pasajeros
             AVLTree passengers = DataLoader.loadPassengersFromJson("src/main/resources/ucr/project/passengers.json");
             flightController.setPassengersTree(passengers);
 
@@ -196,55 +179,48 @@ public class SimulationController {
         }
     }
 
-    private void runCompleteSimulation(int numPassengers, int numFlights) throws IOException {
+    private void runCompleteSimulation(int numPassengers, int numFlights) {
         appendLog("🚀 INICIANDO SIMULACIÓN COMPLETA");
         appendLog("================================");
 
-        // Paso 1: Generar rutas aleatorias
         Platform.runLater(() -> progressBar.setProgress(0.2));
         appendLog("\n🗺️ Generando rutas aleatorias...");
         flightController.generateRandomRoutes();
         appendLog("✅ Rutas generadas exitosamente");
 
-        Thread.sleep(1000);
+        sleep(1000);
 
-        // Paso 2: Validar Dijkstra
         Platform.runLater(() -> progressBar.setProgress(0.3));
         appendLog("\n🧮 Validando algoritmo de Dijkstra...");
         validateDijkstraAlgorithm();
 
-        Thread.sleep(1000);
+        sleep(1000);
 
-        // Paso 3: Generar pasajeros
         Platform.runLater(() -> progressBar.setProgress(0.5));
         appendLog("\n👥 Generando " + numPassengers + " pasajeros aleatorios...");
         flightController.generateRandomPassengers(numPassengers);
         appendLog("✅ Pasajeros generados exitosamente");
 
-        Thread.sleep(1000);
+        sleep(1000);
 
-        // Paso 4: Generar vuelos
         Platform.runLater(() -> progressBar.setProgress(0.7));
         appendLog("\n✈️ Generando " + numFlights + " vuelos aleatorios...");
         flightController.generateRandomFlights(numFlights);
         appendLog("✅ Vuelos generados exitosamente");
 
-        Thread.sleep(1000);
+        sleep(1000);
 
-        // Paso 5: Simular operaciones de aeropuerto
         Platform.runLater(() -> progressBar.setProgress(0.8));
         appendLog("\n🏢 Simulando operaciones de aeropuerto...");
         simulateAirportOperations();
 
-        Thread.sleep(1000);
+        sleep(1000);
 
-        // Paso 6: Asignar pasajeros
         Platform.runLater(() -> progressBar.setProgress(0.9));
         appendLog("\n🎫 Asignando pasajeros a vuelos...");
         flightController.assignRandomPassengersToFlights();
         appendLog("✅ Pasajeros asignados exitosamente");
 
-        // Paso 7: Mostrar estadísticas
         Platform.runLater(() -> progressBar.setProgress(1.0));
         appendLog("\n📊 ESTADÍSTICAS FINALES");
         appendLog("======================");
@@ -311,7 +287,6 @@ public class SimulationController {
         try {
             DoublyLinkedList airports = flightController.getAirportsList();
             if (airports.size() >= 2) {
-                // Probar varias rutas
                 for (int i = 0; i < Math.min(3, airports.size() - 1); i++) {
                     Airport airport1 = (Airport) airports.getNode(i + 1).getData();
                     Airport airport2 = (Airport) airports.getNode(i + 2).getData();
@@ -329,7 +304,7 @@ public class SimulationController {
                         appendLog("⚠️ No existe ruta directa");
                     }
 
-                    Thread.sleep(500);
+                    sleep(500);
                 }
             }
         } catch (Exception e) {
@@ -341,7 +316,6 @@ public class SimulationController {
         try {
             appendLog("🏢 Simulando colas de embarque...");
 
-            // Simular solicitudes de embarque en diferentes aeropuertos
             Random random = new Random();
             DoublyLinkedList airports = flightController.getAirportsList();
 
@@ -349,29 +323,34 @@ public class SimulationController {
                 Airport airport = (Airport) airports.getNode(i + 1).getData();
                 LinkedQueue queue = airportQueues[i];
 
-                // Agregar pasajeros a la cola
                 int passengersInQueue = random.nextInt(10) + 5;
                 for (int j = 0; j < passengersInQueue; j++) {
-                    queue.enQueue("Pasajero-" + (j + 1) + " en " + airport.getName());
+                    try {
+                        queue.enQueue("Pasajero-" + (j + 1) + " en " + airport.getName());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 appendLog("📋 " + airport.getName() + ": " + passengersInQueue + " pasajeros en cola");
-                Thread.sleep(200);
+                sleep(200);
             }
 
             appendLog("🛫 Simulando despegues y aterrizajes...");
 
-            // Simular operaciones de vuelo
             for (int i = 0; i < 3; i++) {
                 LinkedStack stack = aircraftStacks[i];
 
-                // Agregar vuelos al historial
                 for (int j = 0; j < 3; j++) {
-                    stack.push("Vuelo-" + (1000 + i * 10 + j) + " completado");
+                    try {
+                        stack.push("Vuelo-" + (1000 + i * 10 + j) + " completado");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 appendLog("✈️ Avión-" + (i + 1) + ": " + stack.size() + " vuelos en historial");
-                Thread.sleep(300);
+                sleep(300);
             }
 
         } catch (Exception e) {
@@ -385,7 +364,6 @@ public class SimulationController {
             appendLog("👥 Pasajeros registrados: " + flightController.getPassengersTree().size());
             appendLog("✈️ Vuelos programados: " + flightController.getFlightsList().size());
 
-            // Mostrar aeropuertos con más conexiones
             List<Airport> topAirports = flightController.getTopConnectedAirports();
             appendLog("\n🏆 Top 3 aeropuertos con más conexiones:");
             for (int i = 0; i < Math.min(3, topAirports.size()); i++) {
@@ -400,7 +378,6 @@ public class SimulationController {
 
     private void updateQueueAndStackStatus() {
         Platform.runLater(() -> {
-            // Actualizar estado de colas
             queueStatusBox.getChildren().clear();
             for (int i = 0; i < 5; i++) {
                 if (airportQueues[i].size() > 0) {
@@ -409,7 +386,6 @@ public class SimulationController {
                 }
             }
 
-            // Actualizar estado de pilas
             stackStatusBox.getChildren().clear();
             for (int i = 0; i < 3; i++) {
                 if (aircraftStacks[i].size() > 0) {
@@ -426,8 +402,12 @@ public class SimulationController {
             logArea.setScrollTop(Double.MAX_VALUE);
         });
 
+        sleep(100);
+    }
+
+    private void sleep(long millis) {
         try {
-            Thread.sleep(100); // Pequeña pausa para efectos visuales
+            Thread.sleep(millis);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
