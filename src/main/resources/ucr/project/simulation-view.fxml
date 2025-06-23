@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="850.0" prefWidth="1032.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SimulationController">
+    <children>
+        <Pane prefHeight="868.0" prefWidth="1032.0">
+            <children>
+                <!-- Header -->
+                <Pane layoutY="0.0" prefHeight="80.0" prefWidth="1032.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%);">
+                    <children>
+                        <Text layoutX="229.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flight Simulation" textAlignment="CENTER" wrappingWidth="574.0">
+                            <font>
+                                <Font name="Serif Regular" size="47.0" />
+                            </font>
+                            <fill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color red="0.5260721445083618" green="0.6059494614601135" blue="0.8947368264198303" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="0.14939024390243902">
+                                            <color>
+                                                <Color red="0.9700000286102295" green="0.9700000286102295" blue="0.9700000286102295" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="0.6280487804878049">
+                                            <color>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="0.6310975609756098">
+                                            <color>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="0.9725490212440491" green="0.9725490212440491" blue="0.9725490212440491" />
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Text>
+                    </children>
+                </Pane>
+
+                <!-- Main Content -->
+                <Pane layoutY="80.0" prefHeight="789.0" prefWidth="1032.0" style="-fx-background-color: radial-gradient(focus-angle 0.0deg, focus-distance 11.4943% , center 50.0% 50.0%, radius 59.1954%, #ffffff 0.0%, #8f99b5 100.0%);">
+                    <children>
+                        <!-- Control Panel -->
+                        <Pane layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="992.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%); -fx-background-radius: 10;">
+                            <children>
+                                <Text layoutX="20.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Simulation Controls" textAlignment="CENTER" wrappingWidth="300.0">
+                                    <font>
+                                        <Font name="Serif Regular" size="24.0" />
+                                    </font>
+                                    <fill>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </fill>
+                                </Text>
+
+                                <!-- Simulation Type -->
+                                <Text layoutX="20.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Simulation Type:" textFill="WHITE">
+                                    <font>
+                                        <Font name="Serif Regular" size="16.0" />
+                                    </font>
+                                </Text>
+                                <ComboBox fx:id="simulationTypeBox" layoutX="150.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" />
+
+                                <!-- Parameters -->
+                                <Text layoutX="20.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passengers:" textFill="WHITE">
+                                    <font>
+                                        <Font name="Serif Regular" size="16.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="passengersField" layoutX="120.0" layoutY="90.0" prefHeight="25.0" prefWidth="80.0" />
+
+                                <Text layoutX="220.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flights:" textFill="WHITE">
+                                    <font>
+                                        <Font name="Serif Regular" size="16.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="flightsField" layoutX="280.0" layoutY="90.0" prefHeight="25.0" prefWidth="80.0" />
+
+                                <!-- Buttons -->
+                                <Button fx:id="startSimulationBtn" layoutX="400.0" layoutY="50.0" mnemonicParsing="false" onAction="#startSimulation" prefHeight="35.0" prefWidth="120.0" text="Start Simulation">
+                                    <font>
+                                        <Font name="Serif Regular" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="stopSimulationBtn" layoutX="540.0" layoutY="50.0" mnemonicParsing="false" onAction="#stopSimulation" prefHeight="35.0" prefWidth="120.0" text="Stop Simulation">
+                                    <font>
+                                        <Font name="Serif Regular" size="14.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="clearLogBtn" layoutX="680.0" layoutY="50.0" mnemonicParsing="false" onAction="#clearLog" prefHeight="35.0" prefWidth="100.0" text="Clear Log">
+                                    <font>
+                                        <Font name="Serif Regular" size="14.0" />
+                                    </font>
+                                </Button>
+
+                                <!-- Progress Bar -->
+                                <Text layoutX="20.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress:" textFill="WHITE">
+                                    <font>
+                                        <Font name="Serif Regular" size="16.0" />
+                                    </font>
+                                </Text>
+                                <ProgressBar fx:id="progressBar" layoutX="90.0" layoutY="135.0" prefHeight="18.0" prefWidth="400.0" progress="0.0" />
+
+                                <!-- Status Label -->
+                                <Label fx:id="statusLabel" layoutX="510.0" layoutY="135.0" text="Ready to simulate" textFill="WHITE">
+                                    <font>
+                                        <Font name="Serif Regular" size="14.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+
+                        <!-- Log Area -->
+                        <Pane layoutX="20.0" layoutY="240.0" prefHeight="350.0" prefWidth="670.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+                            <children>
+                                <Text layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Simulation Log">
+                                    <font>
+                                        <Font name="Serif Regular" size="18.0" />
+                                    </font>
+                                </Text>
+                                <TextArea fx:id="logArea" editable="false" layoutX="10.0" layoutY="35.0" prefHeight="305.0" prefWidth="650.0" wrapText="true">
+                                    <font>
+                                        <Font name="Courier New" size="12.0" />
+                                    </font>
+                                </TextArea>
+                            </children>
+                        </Pane>
+
+                        <!-- Status Panels -->
+                        <Pane layoutX="710.0" layoutY="240.0" prefHeight="170.0" prefWidth="302.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+                            <children>
+                                <Text layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Queue Status (LinkedQueue)">
+                                    <font>
+                                        <Font name="Serif Regular" size="16.0" />
+                                    </font>
+                                </Text>
+                                <ScrollPane layoutX="10.0" layoutY="35.0" prefHeight="125.0" prefWidth="282.0">
+                                    <content>
+                                        <VBox fx:id="queueStatusBox" spacing="5.0" />
+                                    </content>
+                                </ScrollPane>
+                            </children>
+                        </Pane>
+
+                        <Pane layoutX="710.0" layoutY="420.0" prefHeight="170.0" prefWidth="302.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+                            <children>
+                                <Text layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stack Status (LinkedStack)">
+                                    <font>
+                                        <Font name="Serif Regular" size="16.0" />
+                                    </font>
+                                </Text>
+                                <ScrollPane layoutX="10.0" layoutY="35.0" prefHeight="125.0" prefWidth="282.0">
+                                    <content>
+                                        <VBox fx:id="stackStatusBox" spacing="5.0" />
+                                    </content>
+                                </ScrollPane>
+                            </children>
+                        </Pane>
+
+                        <!-- Instructions -->
+                        <Pane layoutX="20.0" layoutY="610.0" prefHeight="160.0" prefWidth="992.0" style="-fx-background-color: rgba(255,255,255,0.8); -fx-background-radius: 10;">
+                            <children>
+                                <Text layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructions">
+                                    <font>
+                                        <Font name="Serif Regular" size="18.0" />
+                                    </font>
+                                </Text>
+                                <Text layoutX="20.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Select simulation type and configure parameters" wrappingWidth="950.0">
+                                    <font>
+                                        <Font name="Serif Regular" size="14.0" />
+                                    </font>
+                                </Text>
+                                <Text layoutX="20.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• 'Complete Simulation' runs all phases: data loading, route generation, Dijkstra validation, and flight operations" wrappingWidth="950.0">
+                                    <font>
+                                        <Font name="Serif Regular" size="14.0" />
+                                    </font>
+                                </Text>
+                                <Text layoutX="20.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Monitor progress in the log area and observe queue/stack operations in real time" wrappingWidth="950.0">
+                                    <font>
+                                        <Font name="Serif Regular" size="14.0" />
+                                    </font>
+                                </Text>
+                                <Text layoutX="20.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• The simulation uses LinkedQueue for boarding requests and LinkedStack for flight history" wrappingWidth="950.0">
+                                    <font>
+                                        <Font name="Serif Regular" size="14.0" />
+                                    </font>
+                                </Text>
+                                <Text layoutX="20.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Dijkstra algorithm calculates shortest routes between airports with weighted graphs" wrappingWidth="950.0">
+                                    <font>
+                                        <Font name="Serif Regular" size="14.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </Pane>
+                    </children>
+                </Pane>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

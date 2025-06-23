@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="850.0" prefWidth="1032.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatisticsController">
+    <children>
+        <Pane prefHeight="868.0" prefWidth="1032.0">
+            <children>
+                <!-- Header -->
+                <Pane layoutY="0.0" prefHeight="80.0" prefWidth="1032.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%);">
+                    <children>
+                        <Text layoutX="229.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistics & Reports" textAlignment="CENTER" wrappingWidth="574.0">
+                            <font>
+                                <Font name="Serif Regular" size="47.0" />
+                            </font>
+                            <fill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color red="0.5260721445083618" green="0.6059494614601135" blue="0.8947368264198303" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="0.14939024390243902">
+                                            <color>
+                                                <Color red="0.9700000286102295" green="0.9700000286102295" blue="0.9700000286102295" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="0.6280487804878049">
+                                            <color>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="0.6310975609756098">
+                                            <color>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="0.9725490212440491" green="0.9725490212440491" blue="0.9725490212440491" />
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Text>
+                    </children>
+                </Pane>
+
+                <!-- Main Content -->
+                <ScrollPane layoutY="80.0" prefHeight="789.0" prefWidth="1032.0" style="-fx-background: radial-gradient(focus-angle 0.0deg, focus-distance 11.4943% , center 50.0% 50.0%, radius 59.1954%, #ffffff 0.0%, #8f99b5 100.0%);">
+                    <content>
+                        <VBox spacing="20.0" style="-fx-padding: 20;">
+                            <children>
+                                <!-- General Statistics Panel -->
+                                <Pane prefHeight="120.0" prefWidth="990.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%); -fx-background-radius: 10;">
+                                    <children>
+                                        <Text layoutX="20.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="General Statistics" textFill="WHITE">
+                                            <font>
+                                                <Font name="Serif Regular" size="24.0" />
+                                            </font>
+                                        </Text>
+
+                                        <!-- Statistics Grid -->
+                                        <GridPane layoutX="20.0" layoutY="40.0" hgap="60.0" vgap="15.0">
+                                            <children>
+                                                <VBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label fx:id="totalAirportsLabel" text="0" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Serif Bold" size="28.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Airports" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Serif Regular" size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label fx:id="totalFlightsLabel" text="0" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Serif Bold" size="28.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Flights" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Serif Regular" size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label fx:id="totalPassengersLabel" text="0" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Serif Bold" size="28.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Passengers" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Serif Regular" size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label fx:id="averageOccupancyLabel" text="0%" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Serif Bold" size="28.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Avg Occupancy" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Serif Regular" size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox alignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label fx:id="totalRoutesLabel" text="0" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Serif Bold" size="28.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Routes" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Serif Regular" size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox alignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="0">
+                                                    <children>
+                                                        <Label fx:id="activeFlightsLabel" text="0" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Serif Bold" size="28.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Label text="Active Flights" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Serif Regular" size="14.0" />
+                                                            </font>
+                                                        </Label>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </GridPane>
+
+                                        <Button layoutX="880.0" layoutY="45.0" mnemonicParsing="false" onAction="#refreshStatistics" text="Refresh">
+                                            <font>
+                                                <Font name="Serif Regular" size="14.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </Pane>
+
+                                <!-- Charts Section -->
+                                <HBox spacing="20.0">
+                                    <children>
+                                        <!-- Occupancy Pie Chart -->
+                                        <Pane prefHeight="300.0" prefWidth="320.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                            <children>
+                                                <Text layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flight Occupancy Distribution">
+                                                    <font>
+                                                        <Font name="Serif Regular" size="16.0" />
+                                                    </font>
+                                                </Text>
+                                                <PieChart fx:id="occupancyChart" layoutX="10.0" layoutY="35.0" prefHeight="255.0" prefWidth="300.0" />
+                                            </children>
+                                        </Pane>
+
+                                        <!-- Airports Bar Chart -->
+                                        <Pane prefHeight="300.0" prefWidth="320.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                            <children>
+                                                <Text layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Top Airports by Flights">
+                                                    <font>
+                                                        <Font name="Serif Regular" size="16.0" />
+                                                    </font>
+                                                </Text>
+                                                <BarChart fx:id="airportsChart" layoutX="10.0" layoutY="35.0" prefHeight="255.0" prefWidth="300.0">
+                                                    <xAxis>
+                                                        <CategoryAxis />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis />
+                                                    </yAxis>
+                                                </BarChart>
+                                            </children>
+                                        </Pane>
+
+                                        <!-- Flights Line Chart -->
+                                        <Pane prefHeight="300.0" prefWidth="320.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                            <children>
+                                                <Text layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flight Trends">
+                                                    <font>
+                                                        <Font name="Serif Regular" size="16.0" />
+                                                    </font>
+                                                </Text>
+                                                <LineChart fx:id="flightsChart" layoutX="10.0" layoutY="35.0" prefHeight="255.0" prefWidth="300.0">
+                                                    <xAxis>
+                                                        <CategoryAxis />
+                                                    </xAxis>
+                                                    <yAxis>
+                                                        <NumberAxis />
+                                                    </yAxis>
+                                                </LineChart>
+                                            </children>
+                                        </Pane>
+                                    </children>
+                                </HBox>
+
+                                <!-- Tables Section -->
+                                <HBox spacing="20.0">
+                                    <children>
+                                        <!-- Top Airports Table -->
+                                        <Pane prefHeight="250.0" prefWidth="320.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                            <children>
+                                                <Text layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Top 5 Airports">
+                                                    <font>
+                                                        <Font name="Serif Regular" size="16.0" />
+                                                    </font>
+                                                </Text>
+                                                <TableView fx:id="topAirportsTable" layoutX="10.0" layoutY="35.0" prefHeight="205.0" prefWidth="300.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="airportNameColumn" prefWidth="150.0" text="Airport" />
+                                                        <TableColumn fx:id="flightCountColumn" prefWidth="75.0" text="Flights" />
+                                                        <TableColumn fx:id="occupancyColumn" prefWidth="75.0" text="Occ%" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </Pane>
+
+                                        <!-- Top Routes Table -->
+                                        <Pane prefHeight="250.0" prefWidth="320.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                            <children>
+                                                <Text layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Most Used Routes">
+                                                    <font>
+                                                        <Font name="Serif Regular" size="16.0" />
+                                                    </font>
+                                                </Text>
+                                                <TableView fx:id="topRoutesTable" layoutX="10.0" layoutY="35.0" prefHeight="205.0" prefWidth="300.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="routeColumn" prefWidth="150.0" text="Route" />
+                                                        <TableColumn fx:id="usageCountColumn" prefWidth="75.0" text="Usage" />
+                                                        <TableColumn fx:id="distanceColumn" prefWidth="75.0" text="Dist(km)" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </Pane>
+
+                                        <!-- Top Passengers Table -->
+                                        <Pane prefHeight="250.0" prefWidth="320.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                            <children>
+                                                <Text layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Top Passengers">
+                                                    <font>
+                                                        <Font name="Serif Regular" size="16.0" />
+                                                    </font>
+                                                </Text>
+                                                <TableView fx:id="topPassengersTable" layoutX="10.0" layoutY="35.0" prefHeight="205.0" prefWidth="300.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="passengerNameColumn" prefWidth="120.0" text="Passenger" />
+                                                        <TableColumn fx:id="flightsCountColumn" prefWidth="80.0" text="Flights" />
+                                                        <TableColumn fx:id="nationalityColumn" prefWidth="100.0" text="Country" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </Pane>
+                                    </children>
+                                </HBox>
+
+                                <!-- Reports Section -->
+                                <Pane prefHeight="300.0" prefWidth="990.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+                                    <children>
+                                        <Text layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reports Generation">
+                                            <font>
+                                                <Font name="Serif Regular" size="18.0" />
+                                            </font>
+                                        </Text>
+
+                                        <!-- Report Controls -->
+                                        <HBox layoutX="20.0" layoutY="35.0" spacing="15.0">
+                                            <children>
+                                                <ComboBox fx:id="reportTypeBox" prefHeight="25.0" prefWidth="200.0" />
+                                                <Button mnemonicParsing="false" onAction="#generateReport" text="Generate Report">
+                                                    <font>
+                                                        <Font name="Serif Regular" size="14.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button mnemonicParsing="false" onAction="#exportReport" text="Export Report">
+                                                    <font>
+                                                        <Font name="Serif Regular" size="14.0" />
+                                                    </font>
+                                                </Button>
+                                                <Button mnemonicParsing="false" onAction="#exportData" text="Export Data (JSON)">
+                                                    <font>
+                                                        <Font name="Serif Regular" size="14.0" />
+                                                    </font>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+
+                                        <!-- Report Text Area -->
+                                        <TextArea fx:id="reportArea" editable="false" layoutX="20.0" layoutY="75.0" prefHeight="215.0" prefWidth="950.0" wrapText="true">
+                                            <font>
+                                                <Font name="Courier New" size="12.0" />
+                                            </font>
+                                        </TextArea>
+                                    </children>
+                                </Pane>
+                            </children>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

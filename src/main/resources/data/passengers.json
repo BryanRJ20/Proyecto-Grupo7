@@ -1,0 +1,252 @@
+[
+  {
+    "id": 10001,
+    "name": "Juan Pérez",
+    "nationality": "Costa Rica"
+  },
+  {
+    "id": 10002,
+    "name": "María González",
+    "nationality": "México"
+  },
+  {
+    "id": 10003,
+    "name": "Carlos López",
+    "nationality": "España"
+  },
+  {
+    "id": 10004,
+    "name": "Ana Martínez",
+    "nationality": "Colombia"
+  },
+  {
+    "id": 10005,
+    "name": "Luis Rodríguez",
+    "nationality": "Argentina"
+  },
+  {
+    "id": 10006,
+    "name": "Carmen Hernández",
+    "nationality": "Chile"
+  },
+  {
+    "id": 10007,
+    "name": "José García",
+    "nationality": "Perú"
+  },
+  {
+    "id": 10008,
+    "name": "Lucía Fernández",
+    "nationality": "Venezuela"
+  },
+  {
+    "id": 10009,
+    "name": "Pedro Sánchez",
+    "nationality": "Ecuador"
+  },
+  {
+    "id": 10010,
+    "name": "Isabel Ruiz",
+    "nationality": "Uruguay"
+  },
+  {
+    "id": 10011,
+    "name": "Francisco Díaz",
+    "nationality": "Estados Unidos"
+  },
+  {
+    "id": 10012,
+    "name": "Pilar Moreno",
+    "nationality": "Canadá"
+  },
+  {
+    "id": 10013,
+    "name": "Antonio Muñoz",
+    "nationality": "Francia"
+  },
+  {
+    "id": 10014,
+    "name": "Teresa Álvarez",
+    "nationality": "Reino Unido"
+  },
+  {
+    "id": 10015,
+    "name": "Manuel Romero",
+    "nationality": "Alemania"
+  },
+  {
+    "id": 10016,
+    "name": "Dolores Navarro",
+    "nationality": "Italia"
+  },
+  {
+    "id": 10017,
+    "name": "Jesús Torres",
+    "nationality": "Brasil"
+  },
+  {
+    "id": 10018,
+    "name": "Rosario Domínguez",
+    "nationality": "Australia"
+  },
+  {
+    "id": 10019,
+    "name": "Alejandro Vázquez",
+    "nationality": "Japón"
+  },
+  {
+    "id": 10020,
+    "name": "Mercedes Ramos",
+    "nationality": "Singapur"
+  },
+  {
+    "id": 10021,
+    "name": "Miguel Jiménez",
+    "nationality": "Costa Rica"
+  },
+  {
+    "id": 10022,
+    "name": "Sandra Castro",
+    "nationality": "México"
+  },
+  {
+    "id": 10023,
+    "name": "Roberto Silva",
+    "nationality": "España"
+  },
+  {
+    "id": 10024,
+    "name": "Elena Vargas",
+    "nationality": "Colombia"
+  },
+  {
+    "id": 10025,
+    "name": "Diego Mendoza",
+    "nationality": "Argentina"
+  },
+  {
+    "id": 10026,
+    "name": "Patricia Ortega",
+    "nationality": "Chile"
+  },
+  {
+    "id": 10027,
+    "name": "Fernando Blanco",
+    "nationality": "Perú"
+  },
+  {
+    "id": 10028,
+    "name": "Gloria Medina",
+    "nationality": "Venezuela"
+  },
+  {
+    "id": 10029,
+    "name": "Raúl Herrera",
+    "nationality": "Ecuador"
+  },
+  {
+    "id": 10030,
+    "name": "Mónica Vega",
+    "nationality": "Uruguay"
+  },
+  {
+    "id": 10031,
+    "name": "Sergio Delgado",
+    "nationality": "Estados Unidos"
+  },
+  {
+    "id": 10032,
+    "name": "Beatriz Aguilar",
+    "nationality": "Canadá"
+  },
+  {
+    "id": 10033,
+    "name": "Adrián Flores",
+    "nationality": "Francia"
+  },
+  {
+    "id": 10034,
+    "name": "Cristina Peña",
+    "nationality": "Reino Unido"
+  },
+  {
+    "id": 10035,
+    "name": "Javier Morales",
+    "nationality": "Alemania"
+  },
+  {
+    "id": 10036,
+    "name": "Alicia Guerrero",
+    "nationality": "Italia"
+  },
+  {
+    "id": 10037,
+    "name": "Ricardo Ibáñez",
+    "nationality": "Brasil"
+  },
+  {
+    "id": 10038,
+    "name": "Susana Cortés",
+    "nationality": "Australia"
+  },
+  {
+    "id": 10039,
+    "name": "Óscar Prieto",
+    "nationality": "Japón"
+  },
+  {
+    "id": 10040,
+    "name": "Amparo Lozano",
+    "nationality": "Singapur"
+  },
+  {
+    "id": 10041,
+    "name": "Tomás Gallego",
+    "nationality": "Costa Rica"
+  },
+  {
+    "id": 10042,
+    "name": "Raquel Cabrera",
+    "nationality": "México"
+  },
+  {
+    "id": 10043,
+    "name": "Enrique Molina",
+    "nationality": "España"
+  },
+  {
+    "id": 10044,
+    "name": "Inmaculada Serrano",
+    "nationality": "Colombia"
+  },
+  {
+    "id": 10045,
+    "name": "Guillermo Pascual",
+    "nationality": "Argentina"
+  },
+  {
+    "id": 10046,
+    "name": "Concepción Campos",
+    "nationality": "Chile"
+  },
+  {
+    "id": 10047,
+    "name": "Alberto Santana",
+    "nationality": "Perú"
+  },
+  {
+    "id": 10048,
+    "name": "Marisol Cano",
+    "nationality": "Venezuela"
+  },
+  {
+    "id": 10049,
+    "name": "Esteban Moya",
+    "nationality": "Ecuador"
+  },
+  {
+    "id": 10050,
+    "name": "Remedios Hidalgo",
+    "nationality": "Uruguay"
+  }
+]
