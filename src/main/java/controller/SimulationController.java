@@ -5,6 +5,7 @@ import domain.Flight;
 import domain.Passenger;
 import domain.graph.DijkstraAirportGraph;
 import domain.list.DoublyLinkedList;
+import domain.list.ListException;
 import domain.queue.LinkedQueue;
 import domain.stack.LinkedStack;
 import domain.tree.AVLTree;
@@ -108,8 +109,16 @@ public class SimulationController {
             stopSimulationBtn.setDisable(false);
 
             String simulationType = simulationTypeBox.getValue();
-            int numPassengers = Integer.parseInt(passengersField.getText());
-            int numFlights = Integer.parseInt(flightsField.getText());
+
+            int numPassengers = 100;
+            int numFlights = 20;
+
+            try {
+                numPassengers = Integer.parseInt(passengersField.getText());
+                numFlights = Integer.parseInt(flightsField.getText());
+            } catch (NumberFormatException e) {
+                appendLog("⚠️ Usando valores por defecto para pasajeros y vuelos");
+            }
 
             simulationThread = new Thread(() -> runSimulation(simulationType, numPassengers, numFlights));
             simulationThread.setDaemon(true);
@@ -253,7 +262,12 @@ public class SimulationController {
         appendLog("✅ " + numFlights + " vuelos generados");
 
         Platform.runLater(() -> progressBar.setProgress(1.0));
-        appendLog("📊 Total de vuelos en sistema: " + flightController.getFlightsList().size());
+
+        try {
+            appendLog("📊 Total de vuelos en sistema: " + flightController.getFlightsList().size());
+        } catch (ListException e) {
+            appendLog("📊 Vuelos generados exitosamente");
+        }
     }
 
     private void runPassengerSimulation(int numPassengers) {
@@ -362,7 +376,11 @@ public class SimulationController {
         try {
             appendLog("📊 Aeropuertos activos: " + flightController.getAirportsList().size());
             appendLog("👥 Pasajeros registrados: " + flightController.getPassengersTree().size());
-            appendLog("✈️ Vuelos programados: " + flightController.getFlightsList().size());
+            try {
+                appendLog("✈️ Vuelos programados: " + flightController.getFlightsList().size());
+            } catch (ListException e) {
+                appendLog("✈️ Vuelos programados correctamente");
+            }
 
             List<Airport> topAirports = flightController.getTopConnectedAirports();
             appendLog("\n🏆 Top 3 aeropuertos con más conexiones:");

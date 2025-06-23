@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="850.0" prefWidth="1032.0" style="-fx-background-color: radial-gradient(focus-angle 0.0deg, focus-distance 11.4943% , center 50.0% 50.0%, radius 59.1954%, #ffffff 0.0%, #8f99b5 100.0%);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserReservationsController">
+    <children>
+        <!-- Header -->
+        <Pane layoutY="0.0" prefHeight="80.0" prefWidth="1032.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%);">
+            <children>
+                <Text layoutX="350.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flight Reservations" textAlignment="CENTER">
+                    <font>
+                        <Font name="Serif Regular" size="36.0" />
+                    </font>
+                    <fill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color red="0.5260721445083618" green="0.6059494614601135" blue="0.8947368264198303" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="0.14939024390243902">
+                                    <color>
+                                        <Color red="0.9700000286102295" green="0.9700000286102295" blue="0.9700000286102295" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="0.6280487804878049">
+                                    <color>
+                                        <Color red="1.0" green="1.0" blue="1.0" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.9725490212440491" green="0.9725490212440491" blue="0.9725490212440491" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </fill>
+                </Text>
+            </children>
+        </Pane>
+
+        <!-- Search Panel -->
+        <Pane layoutX="20.0" layoutY="100.0" prefHeight="120.0" prefWidth="992.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%); -fx-background-radius: 10;">
+            <children>
+                <Text layoutX="20.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Flights" textFill="WHITE">
+                    <font>
+                        <Font name="Serif Regular" size="20.0" />
+                    </font>
+                </Text>
+
+                <Text layoutX="20.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Origin:" textFill="WHITE">
+                    <font>
+                        <Font name="Serif Regular" size="14.0" />
+                    </font>
+                </Text>
+                <ComboBox fx:id="originComboBox" layoutX="20.0" layoutY="70.0" prefHeight="25.0" prefWidth="200.0" promptText="Select Origin" />
+
+                <Text layoutX="250.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Destination:" textFill="WHITE">
+                    <font>
+                        <Font name="Serif Regular" size="14.0" />
+                    </font>
+                </Text>
+                <ComboBox fx:id="destinationComboBox" layoutX="250.0" layoutY="70.0" prefHeight="25.0" prefWidth="200.0" promptText="Select Destination" />
+
+                <Text layoutX="480.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Departure Date:" textFill="WHITE">
+                    <font>
+                        <Font name="Serif Regular" size="14.0" />
+                    </font>
+                </Text>
+                <DatePicker fx:id="departureDatePicker" layoutX="480.0" layoutY="70.0" prefHeight="25.0" prefWidth="150.0" />
+
+                <Button fx:id="searchFlightsBtn" layoutX="660.0" layoutY="70.0" mnemonicParsing="false" onAction="#searchFlights" prefHeight="25.0" prefWidth="100.0" text="Search Flights">
+                    <font>
+                        <Font name="Serif Regular" size="12.0" />
+                    </font>
+                </Button>
+
+                <Label fx:id="statusLabel" layoutX="780.0" layoutY="74.0" text="Ready to search" textFill="WHITE">
+                    <font>
+                        <Font name="Serif Regular" size="12.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+
+        <!-- Available Flights Table -->
+        <Pane layoutX="20.0" layoutY="240.0" prefHeight="280.0" prefWidth="992.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+            <children>
+                <Text layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available Flights">
+                    <font>
+                        <Font name="Serif Regular" size="18.0" />
+                    </font>
+                </Text>
+                <TableView fx:id="availableFlightsTable" layoutX="10.0" layoutY="35.0" prefHeight="200.0" prefWidth="972.0">
+                    <columns>
+                        <TableColumn fx:id="availableFlightNumberColumn" prefWidth="80.0" text="Flight #" />
+                        <TableColumn fx:id="availableOriginColumn" prefWidth="200.0" text="Origin" />
+                        <TableColumn fx:id="availableDestinationColumn" prefWidth="200.0" text="Destination" />
+                        <TableColumn fx:id="availableDepartureColumn" prefWidth="150.0" text="Departure" />
+                        <TableColumn fx:id="availableSeatsColumn" prefWidth="100.0" text="Available Seats" />
+                        <TableColumn fx:id="availablePriceColumn" prefWidth="80.0" text="Price" />
+                    </columns>
+                </TableView>
+                <Button fx:id="makeReservationBtn" layoutX="10.0" layoutY="245.0" mnemonicParsing="false" onAction="#makeReservation" prefHeight="25.0" prefWidth="120.0" text="Make Reservation">
+                    <font>
+                        <Font name="Serif Regular" size="12.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+
+        <!-- My Reservations Table -->
+        <Pane layoutX="20.0" layoutY="540.0" prefHeight="280.0" prefWidth="992.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+            <children>
+                <Text layoutX="20.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Reservations">
+                    <font>
+                        <Font name="Serif Regular" size="18.0" />
+                    </font>
+                </Text>
+                <TableView fx:id="myReservationsTable" layoutX="10.0" layoutY="35.0" prefHeight="200.0" prefWidth="972.0">
+                    <columns>
+                        <TableColumn fx:id="myFlightNumberColumn" prefWidth="100.0" text="Flight #" />
+                        <TableColumn fx:id="myOriginColumn" prefWidth="250.0" text="Origin" />
+                        <TableColumn fx:id="myDestinationColumn" prefWidth="250.0" text="Destination" />
+                        <TableColumn fx:id="myDepartureColumn" prefWidth="200.0" text="Departure" />
+                        <TableColumn fx:id="myStatusColumn" prefWidth="150.0" text="Status" />
+                    </columns>
+                </TableView>
+                <Button fx:id="cancelReservationBtn" layoutX="10.0" layoutY="245.0" mnemonicParsing="false" onAction="#cancelReservation" prefHeight="25.0" prefWidth="120.0" text="Cancel Reservation">
+                    <font>
+                        <Font name="Serif Regular" size="12.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
