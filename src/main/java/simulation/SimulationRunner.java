@@ -7,6 +7,7 @@ import domain.list.DoublyLinkedList;
 import domain.tree.AVLTree;
 import util.DataLoader;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -25,7 +26,7 @@ public class SimulationRunner {
     /**
      * Método principal de simulación
      */
-    public void runSimulation() {
+    public void runSimulation() throws IOException {
         System.out.println("🚀 INICIANDO SIMULACIÓN DE RED AÉREA");
         System.out.println("=====================================");
 
@@ -133,7 +134,7 @@ public class SimulationRunner {
     /**
      * Genera pasajeros aleatorios y los registra en el árbol AVL
      */
-    private void generatePassengers() {
+    private void generatePassengers() throws IOException {
         System.out.println("\n👥 GENERANDO PASAJEROS ALEATORIOS...");
 
         // Intentar cargar pasajeros desde JSON
@@ -287,7 +288,7 @@ public class SimulationRunner {
     /**
      * Método principal para ejecutar la simulación
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         SimulationRunner simulation = new SimulationRunner();
         simulation.runSimulation();
     }

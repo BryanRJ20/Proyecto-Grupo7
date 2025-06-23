@@ -1,17 +1,21 @@
 package util;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import domain.Airport;
+import domain.Flight;
 import domain.Passenger;
 import domain.Status;
+import domain.list.CircularDoublyLinkedList;
+import domain.list.CircularLinkedList;
 import domain.list.DoublyLinkedList;
 import domain.tree.AVLTree;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -47,7 +51,7 @@ public class DataLoader {
     /**
      * Carga pasajeros desde archivo JSON
      */
-    public static AVLTree loadPassengersFromJson(String filePath) {
+    public static AVLTree loadPassengersFromJson(String filePath) throws IOException {
         AVLTree passengersTree = new AVLTree();
 
         try (FileReader reader = new FileReader(filePath)) {
@@ -63,6 +67,67 @@ public class DataLoader {
         } catch (Exception e) {
             System.err.println("❌ Error loading passengers from JSON: " + e.getMessage());
             System.out.println("🔄 Generating default passengers...");
+            generateDefaultPassengers(passengersTree);
+        }
+
+        return passengersTree;
+    }
+
+    public static AVLTree loadPassengersFromJsonAlternativo(String filePath) throws IOException {
+        AVLTree passengersTree = new AVLTree();
+        File file = new File(filePath);
+
+        // Verificar si el archivo existe
+        if (!file.exists()) {
+            System.err.println("❌ Error: El archivo no existe: " + file.getAbsolutePath());
+            System.out.println("🔄 Generando pasajeros predeterminados...");
+            generateDefaultPassengers(passengersTree);
+            return passengersTree;
+        }
+
+        // Verificar si se puede leer el archivo
+        if (!file.canRead()) {
+            System.err.println("❌ Error: No se puede leer el archivo: " + file.getAbsolutePath());
+            System.out.println("🔄 Generando pasajeros predeterminados...");
+            generateDefaultPassengers(passengersTree);
+            return passengersTree;
+        }
+
+        try (FileReader reader = new FileReader(file)) {
+            // Crear instancia de Gson con configuración adecuada
+            Gson gson = new GsonBuilder()
+                    .setPrettyPrinting()
+                    .create();
+
+            Type listType = new TypeToken<List<Passenger>>(){}.getType();
+            List<Passenger> passengers = gson.fromJson(reader, listType);
+
+            if (passengers != null) {
+                System.out.println("✓ JSON parseado correctamente, encontrados " + passengers.size() + " pasajeros");
+                for (Passenger passenger : passengers) {
+                    passengersTree.insert(passenger);
+                }
+                System.out.println("✅ Cargados " + passengers.size() + " pasajeros desde " + filePath);
+            } else {
+                System.err.println("⚠️ No se encontraron pasajeros en el archivo (null)");
+                System.out.println("🔄 Generando pasajeros predeterminados...");
+                generateDefaultPassengers(passengersTree);
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("❌ Error: Archivo no encontrado: " + file.getAbsolutePath());
+            System.err.println("Detalles: " + e.getMessage());
+            System.out.println("🔄 Generando pasajeros predeterminados...");
+            generateDefaultPassengers(passengersTree);
+        } catch (JsonParseException e) {
+            System.err.println("❌ Error: Formato JSON inválido en el archivo: " + file.getAbsolutePath());
+            System.err.println("Detalles: " + e.getMessage());
+            System.out.println("🔄 Generando pasajeros predeterminados...");
+            generateDefaultPassengers(passengersTree);
+        } catch (Exception e) {
+            System.err.println("❌ Error inesperado al cargar pasajeros: " + e.getClass().getName());
+            System.err.println("Detalles: " + e.getMessage());
+            e.printStackTrace();
+            System.out.println("🔄 Generando pasajeros predeterminados...");
             generateDefaultPassengers(passengersTree);
         }
 
@@ -157,7 +222,7 @@ public class DataLoader {
     /**
      * Genera pasajeros por defecto
      */
-    private static void generateDefaultPassengers(AVLTree passengersTree) {
+    private static void generateDefaultPassengers(AVLTree passengersTree) throws IOException {
         String[] firstNames = {
                 "Juan", "María", "Carlos", "Ana", "Luis", "Carmen", "José", "Lucía",
                 "Pedro", "Isabel", "Francisco", "Pilar", "Antonio", "Teresa", "Manuel"
@@ -174,7 +239,7 @@ public class DataLoader {
         };
 
         for (int i = 0; i < 200; i++) {
-            int id = 10000 + i;
+            int id = 10020 + i;
             String firstName = firstNames[random.nextInt(firstNames.length)];
             String lastName = lastNames[random.nextInt(lastNames.length)];
             String name = firstName + " " + lastName;
@@ -184,8 +249,125 @@ public class DataLoader {
             passengersTree.insert(passenger);
         }
 
+        //Guardar la lista actualizada en el archivo JSON
+        try (FileWriter writer = new FileWriter("src/main/resources/ucr/project/passengers.json")) {
+            gson.toJson(passengersTree, writer);
+        }
+
         System.out.println("✅ Generated 200 default passengers");
     }
+
+
+    //Carga los vuelos desde JSON
+    public static CircularDoublyLinkedList loadFlightsFromJson(String filePath) {
+        CircularDoublyLinkedList flightsList = new CircularDoublyLinkedList();
+
+        try (FileReader reader = new FileReader(filePath)) {
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+                    .create();
+
+            Type listType = new TypeToken<List<Flight>>(){}.getType();
+            List<Flight> flights = gson.fromJson(reader, listType);
+
+            if (flights != null) {
+                for (Flight flight : flights) {
+                    flightsList.add(flight);
+                }
+                System.out.println("✅ Loaded " + flights.size() + " flights from " + filePath);
+            }
+        } catch (Exception e) {
+            System.err.println("❌ Error loading flights from JSON: " + e.getMessage());
+            System.out.println("🔄 Generating default flights...");
+            generateDefaultFlights("src/main/resources/data/flights.json");
+            return loadFlightsFromJson(filePath); // Intentar cargar nuevamente
+        }
+
+        return flightsList;
+    }
+
+    //Los genera aleatorios los vuelos
+    private static void generateDefaultFlights(String jsonFilePath) {
+        // Primero cargamos los aeropuertos activos
+        List<Integer> activeAirportCodes = new ArrayList<>();
+
+        try (FileReader reader = new FileReader("src/main/resources/data/airports.json")) {
+            Gson gson = new GsonBuilder().create();
+            Type listType = new TypeToken<List<Airport>>(){}.getType();
+            List<Airport> airports = gson.fromJson(reader, listType);
+
+            if (airports != null) {
+                for (Airport airport : airports) {
+                    if (airport.isActive()) { //Verifica que esté activo antes de agregarlo a la lista de activos
+                        activeAirportCodes.add(airport.getCode());
+                    }
+                }
+                System.out.println("✅ Loaded " + activeAirportCodes.size() + " active airports");
+            }
+        } catch (Exception e) {
+            System.err.println("❌ Error loading airports: " + e.getMessage());
+            return; // Si no podemos cargar aeropuertos, no podemos generar vuelos
+        }
+
+        // Si no hay aeropuertos activos, no podemos generar vuelos
+        if (activeAirportCodes.isEmpty()) {
+            System.err.println("❌ No active airports found");
+            return;
+        }
+
+        List<Flight> flights = new ArrayList<>();
+        Random random = new Random();
+
+        // Generar 300 vuelos aleatorios
+        for (int i = 0; i < 300; i++) {
+            // Número de vuelo entre 1000 y 9999
+            int flightNumber = 1000 + random.nextInt(9000);
+
+            // Seleccionar aeropuertos de origen y destino diferentes
+            int originIndex = random.nextInt(activeAirportCodes.size());
+            int destIndex;
+            do {
+                destIndex = random.nextInt(activeAirportCodes.size());
+            } while (destIndex == originIndex);
+
+            int origin = activeAirportCodes.get(originIndex);
+            int destination = activeAirportCodes.get(destIndex);
+
+            // Generar fecha de salida
+            LocalDateTime now = LocalDateTime.now();
+            int daysOffset = random.nextInt(60) - 30; // Vuelos entre 30 días en el pasado y 30 en el futuro
+            int hoursOffset = random.nextInt(24);
+
+            LocalDateTime departureDate = now.plusDays(daysOffset).plusHours(hoursOffset);
+
+            // Capacidad del avión
+            int capacity = 100 + random.nextInt(250); // Aviones entre 100 y 350 pasajeros
+
+            Flight flight = new Flight(
+                    flightNumber,
+                    String.valueOf(origin), // Convertir código a String para el constructor
+                    String.valueOf(destination), // Convertir código a String para el constructor
+                    departureDate,
+                    capacity
+            );
+
+            flights.add(flight); //Añade el vuelo a flights
+        }
+
+        // Guardar en archivo JSON
+        try (FileWriter writer = new FileWriter(jsonFilePath)) {
+            Gson gson = new GsonBuilder()
+                    .setPrettyPrinting()
+                    .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+                    .create();
+
+            gson.toJson(flights, writer);
+            System.out.println("✅ Generated and saved " + flights.size() + " flights to " + jsonFilePath);
+        } catch (IOException e) {
+            System.err.println("❌ Error saving flights to JSON: " + e.getMessage());
+        }
+    }
+
 
     /**
      * Crea archivos JSON de ejemplo si no existen
@@ -270,4 +452,18 @@ public class DataLoader {
             System.err.println("❌ Error creating sample JSON files: " + e.getMessage());
         }
     }
+
+    // Adaptador para serializar/deserializar LocalDateTime para convertir y desconvertir objetos tipo Local Date Time en JSON
+    private static class LocalDateTimeAdapter implements JsonSerializer<LocalDateTime>, JsonDeserializer<LocalDateTime> {
+        @Override
+        public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) {
+            return new JsonPrimitive(src.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        }
+
+        @Override
+        public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+            return LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        }
+    }
+
 }

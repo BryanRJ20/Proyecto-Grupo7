@@ -64,7 +64,10 @@ public class MenuController {
 
     @javafx.fxml.FXML
     public void flights(ActionEvent actionEvent) {
-        // Implementación pendiente
+        try {
+            load("flights-view.fxml");
+        } catch (Exception e) {showCompactError("Error", "Error cargando vuelos: " + e.getMessage());}
+
     }
 
     @javafx.fxml.FXML

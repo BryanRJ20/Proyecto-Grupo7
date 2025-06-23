@@ -255,4 +255,10 @@ public class AVLTree {
         }
         return "AVL Tree Content:\n" + inOrder();
     }
+
+
+    public AVLNode getRoot() {
+        return root;
+    }
 }
+

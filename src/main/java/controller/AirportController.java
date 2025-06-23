@@ -26,10 +26,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class AirportController {
     @javafx.fxml.FXML
@@ -282,9 +279,25 @@ public class AirportController {
                 "Alemania",
                 "Brasil",
                 "Argentina",
-                "Japón"
+                "Japón",
+                "Italia",
+                "Reino Unido",
+                "Colombia",
+                "Chile",
+                "Perú",
+                "Panamá",
+                "Honduras",
+                "Guatemala",
+                "El Salvador",
+                "Nicaragua",
+                "Corea del Sur",
+                "India",
+                "Australia",
+                "China",
+                "Portugal"
         );
-
+        // Ordena alfabéticamente
+        Collections.sort(countries);
         countryBox.getItems().clear();  // Limpia elementos previos
         countryBox.getItems().addAll(countries);  // Agrega la lista de países
     }

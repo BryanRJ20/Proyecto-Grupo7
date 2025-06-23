@@ -1,0 +1,193 @@
+[
+  {
+    "id": 10001,
+    "name": "Ana María Rodríguez",
+    "nationality": "Costa Rica",
+    "flightHistory": []
+  },
+  {
+    "id": 10002,
+    "name": "Luis Fernando Gómez",
+    "nationality": "México",
+    "flightHistory": [
+      {
+        "flightNumber": 1101,
+        "origin": "JFK",
+        "destination": "Toronto Pearson",
+        "departureTime": "2025-06-15T09:00:00",
+        "capacity": 180,
+        "occupancy": 150
+      }
+    ]
+  },
+  {
+    "id": 10003,
+    "name": "Isabel Mora",
+    "nationality": "Colombia",
+    "flightHistory": []
+  },
+  {
+    "id": 10004,
+    "name": "Carlos Méndez",
+    "nationality": "Argentina",
+    "flightHistory": [
+      {
+        "flightNumber": 1102,
+        "origin": "Heathrow",
+        "destination": "Charles de Gaulle",
+        "departureTime": "2025-06-20T14:45:00",
+        "capacity": 160,
+        "occupancy": 120
+      },
+      {
+        "flightNumber": 1103,
+        "origin": "Charles de Gaulle",
+        "destination": "Frankfurt",
+        "departureTime": "2025-06-21T10:00:00",
+        "capacity": 150,
+        "occupancy": 140
+      }
+    ]
+  },
+  {
+    "id": 10005,
+    "name": "María Fernández",
+    "nationality": "Chile",
+    "flightHistory": []
+  },
+  {
+    "id": 10006,
+    "name": "Pedro Sánchez",
+    "nationality": "España",
+    "flightHistory": [
+      {
+        "flightNumber": 1104,
+        "origin": "Madrid Barajas",
+        "destination": "Haneda",
+        "departureTime": "2025-07-01T23:30:00",
+        "capacity": 200,
+        "occupancy": 190
+      }
+    ]
+  },
+  {
+    "id": 10007,
+    "name": "Laura Morales",
+    "nationality": "Perú",
+    "flightHistory": []
+  },
+  {
+    "id": 10008,
+    "name": "Jorge Castillo",
+    "nationality": "Costa Rica",
+    "flightHistory": []
+  },
+  {
+    "id": 10009,
+    "name": "Andrea Soto",
+    "nationality": "Panamá",
+    "flightHistory": [
+      {
+        "flightNumber": 1105,
+        "origin": "Toronto Pearson",
+        "destination": "JFK",
+        "departureTime": "2025-06-19T08:00:00",
+        "capacity": 170,
+        "occupancy": 160
+      }
+    ]
+  },
+  {
+    "id": 10010,
+    "name": "José Vargas",
+    "nationality": "Ecuador",
+    "flightHistory": []
+  },
+  {
+    "id": 10011,
+    "name": "Tatiana Rojas",
+    "nationality": "Uruguay",
+    "flightHistory": []
+  },
+  {
+    "id": 10012,
+    "name": "Mario López",
+    "nationality": "Nicaragua",
+    "flightHistory": []
+  },
+  {
+    "id": 10013,
+    "name": "Gabriela Zamora",
+    "nationality": "Honduras",
+    "flightHistory": [
+      {
+        "flightNumber": 1106,
+        "origin": "Juan Santamaría",
+        "destination": "JFK",
+        "departureTime": "2025-06-18T13:15:00",
+        "capacity": 180,
+        "occupancy": 155
+      }
+    ]
+  },
+  {
+    "id": 10014,
+    "name": "Ricardo Pérez",
+    "nationality": "Guatemala",
+    "flightHistory": []
+  },
+  {
+    "id": 10015,
+    "name": "Daniela Jiménez",
+    "nationality": "Venezuela",
+    "flightHistory": [
+      {
+        "flightNumber": 1107,
+        "origin": "São Paulo–Guarulhos",
+        "destination": "Haneda",
+        "departureTime": "2025-06-25T22:00:00",
+        "capacity": 200,
+        "occupancy": 190
+      }
+    ]
+  },
+  {
+    "id": 10016,
+    "name": "Esteban Torres",
+    "nationality": "Paraguay",
+    "flightHistory": []
+  },
+  {
+    "id": 10017,
+    "name": "Valeria Aguilar",
+    "nationality": "Bolivia",
+    "flightHistory": []
+  },
+  {
+    "id": 10018,
+    "name": "Sofía Navarro",
+    "nationality": "Brasil",
+    "flightHistory": [
+      {
+        "flightNumber": 1108,
+        "origin": "Frankfurt",
+        "destination": "JFK",
+        "departureTime": "2025-06-22T07:45:00",
+        "capacity": 190,
+        "occupancy": 170
+      }
+    ]
+  },
+  {
+    "id": 10019,
+    "name": "Emilio Herrera",
+    "nationality": "El Salvador",
+    "flightHistory": []
+  },
+  {
+    "id": 10020,
+    "name": "Camila Vega",
+    "nationality": "Costa Rica",
+    "flightHistory": []
+  }
+]
