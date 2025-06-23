@@ -224,9 +224,32 @@ public class StatisticsController {
     private void updateGeneralStatistics() {
         try {
             // Estadísticas generales
-            int totalAirports = airportsList != null ? airportsList.size() : 0;
-            int totalFlights = flightsList != null ? flightsList.size() : 0;
-            int totalPassengers = passengersTree != null ? passengersTree.size() : 0;
+            int totalAirports = 0;
+            int totalFlights = 0;
+            int totalPassengers = 0;
+
+            // Obtener total de aeropuertos
+            if (airportsList != null && !airportsList.isEmpty()) {
+                try {
+                    totalAirports = airportsList.size();
+                } catch (ListException e) {
+                    totalAirports = 0;
+                }
+            }
+
+            // Obtener total de vuelos
+            if (flightsList != null && !flightsList.isEmpty()) {
+                try {
+                    totalFlights = flightsList.size();
+                } catch (ListException e) {
+                    totalFlights = 0;
+                }
+            }
+
+            // Obtener total de pasajeros
+            if (passengersTree != null && !passengersTree.isEmpty()) {
+                totalPassengers = passengersTree.size();
+            }
 
             totalAirportsLabel.setText(String.valueOf(totalAirports));
             totalFlightsLabel.setText(String.valueOf(totalFlights));
@@ -286,16 +309,21 @@ public class StatisticsController {
             double totalOccupancy = 0.0;
             int count = 0;
 
-            Node current = flightsList.first;
-            do {
-                Flight flight = (Flight) current.data;
-                if (flight.getCapacity() > 0) {
-                    double occupancyRate = (double) flight.getOccupancy() / flight.getCapacity() * 100;
-                    totalOccupancy += occupancyRate;
-                    count++;
-                }
-                current = current.next;
-            } while (current != flightsList.first);
+            try {
+                Node current = flightsList.first;
+                do {
+                    Flight flight = (Flight) current.data;
+                    if (flight.getCapacity() > 0) {
+                        double occupancyRate = (double) flight.getOccupancy() / flight.getCapacity() * 100;
+                        totalOccupancy += occupancyRate;
+                        count++;
+                    }
+                    current = current.next;
+                } while (current != flightsList.first);
+            } catch (Exception e) {
+                // Si hay error, retornar 0
+                return 0.0;
+            }
 
             return count > 0 ? totalOccupancy / count : 0.0;
         } catch (Exception e) {
@@ -305,7 +333,14 @@ public class StatisticsController {
 
     private int countActiveRoutes() {
         // Implementación simplificada - en un sistema real contaríamos las rutas del grafo
-        return airportsList != null ? airportsList.size() * 3 : 0;
+        try {
+            if (airportsList != null && !airportsList.isEmpty()) {
+                return airportsList.size() * 3;
+            }
+        } catch (ListException e) {
+            // Ignorar error
+        }
+        return 0;
     }
 
     private int countActiveFlights() {
@@ -335,30 +370,40 @@ public class StatisticsController {
 
         try {
             // Para cada aeropuerto, contar vuelos de salida
-            for (int i = 1; i <= airportsList.size(); i++) {
-                Airport airport = (Airport) airportsList.getNode(i).getData();
+            try {
+                int airportCount = airportsList.size();
+                for (int i = 1; i <= airportCount; i++) {
+                    Airport airport = (Airport) airportsList.getNode(i).getData();
 
-                int flightCount = 0;
-                double totalOccupancy = 0.0;
-                int occupancyCount = 0;
+                    int flightCount = 0;
+                    double totalOccupancy = 0.0;
+                    int occupancyCount = 0;
 
-                // Contar vuelos desde este aeropuerto
-                Node current = flightsList.first;
-                do {
-                    Flight flight = (Flight) current.data;
-                    if (flight.getOrigin().contains(airport.getName()) ||
-                            flight.getOrigin().contains(String.valueOf(airport.getCode()))) {
-                        flightCount++;
-                        if (flight.getCapacity() > 0) {
-                            totalOccupancy += (double) flight.getOccupancy() / flight.getCapacity() * 100;
-                            occupancyCount++;
-                        }
+                    // Contar vuelos desde este aeropuerto
+                    try {
+                        Node current = flightsList.first;
+                        do {
+                            Flight flight = (Flight) current.data;
+                            if (flight.getOrigin().contains(airport.getName()) ||
+                                    flight.getOrigin().contains(String.valueOf(airport.getCode()))) {
+                                flightCount++;
+                                if (flight.getCapacity() > 0) {
+                                    totalOccupancy += (double) flight.getOccupancy() / flight.getCapacity() * 100;
+                                    occupancyCount++;
+                                }
+                            }
+                            current = current.next;
+                        } while (current != flightsList.first);
+                    } catch (Exception e) {
+                        // Continuar con el siguiente aeropuerto
                     }
-                    current = current.next;
-                } while (current != flightsList.first);
 
-                double avgOccupancy = occupancyCount > 0 ? totalOccupancy / occupancyCount : 0.0;
-                stats.add(new AirportStatistic(airport.getName(), flightCount, avgOccupancy));
+                    double avgOccupancy = occupancyCount > 0 ? totalOccupancy / occupancyCount : 0.0;
+                    stats.add(new AirportStatistic(airport.getName(), flightCount, avgOccupancy));
+                }
+            } catch (ListException e) {
+                // Lista vacía o error
+                return new ArrayList<>();
             }
 
             // Ordenar por número de vuelos (descendente)
@@ -416,8 +461,14 @@ public class StatisticsController {
             collectPassengers(passengersTree.getRoot(), passengers);
 
             for (Passenger passenger : passengers) {
-                int flightCount = passenger.getFlightHistory() != null ?
-                        passenger.getFlightHistory().size() : 0;
+                int flightCount = 0;
+                try {
+                    if (passenger.getFlightHistory() != null) {
+                        flightCount = passenger.getFlightHistory().size();
+                    }
+                } catch (ListException e) {
+                    flightCount = 0;
+                }
                 stats.add(new PassengerStatistic(
                         passenger.getName(),
                         flightCount,
