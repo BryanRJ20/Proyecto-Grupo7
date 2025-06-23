@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -22,6 +23,8 @@ public class HelloController {
     private BorderPane bp;
     @FXML
     private AnchorPane ap;
+    @FXML
+    private Label welcomeLabel;
 
     private AuthenticationService authService;
     private FlightController flightController;
@@ -36,6 +39,9 @@ public class HelloController {
         // Verificar si hay un usuario autenticado
         if (authService.isAuthenticated()) {
             User currentUser = authService.getCurrentUser();
+            if (welcomeLabel != null) {
+                welcomeLabel.setText("Welcome " + currentUser.getUsername() + "!");
+            }
             System.out.println("Usuario autenticado: " + currentUser.getUsername() +
                     " - Rol: " + currentUser.getRole().getDisplayName());
         }
