@@ -46,7 +46,7 @@ public class SimulationController {
 
     private controller.FlightController flightController;
     private Thread simulationThread;
-    private boolean isSimulationRunning = false;
+    private volatile boolean isSimulationRunning = false;
 
     private LinkedQueue[] airportQueues;
     private LinkedStack[] aircraftStacks;
@@ -108,16 +108,22 @@ public class SimulationController {
             startSimulationBtn.setDisable(true);
             stopSimulationBtn.setDisable(false);
 
-            String simulationType = simulationTypeBox.getValue();
-
-            int numPassengers = 100;
-            int numFlights = 20;
+            final String simulationType = simulationTypeBox.getValue();
+            final int numPassengers;
+            final int numFlights;
 
             try {
                 numPassengers = Integer.parseInt(passengersField.getText());
                 numFlights = Integer.parseInt(flightsField.getText());
             } catch (NumberFormatException e) {
                 appendLog("⚠️ Usando valores por defecto para pasajeros y vuelos");
+                final int defaultPassengers = 100;
+                final int defaultFlights = 20;
+
+                simulationThread = new Thread(() -> runSimulation(simulationType, defaultPassengers, defaultFlights));
+                simulationThread.setDaemon(true);
+                simulationThread.start();
+                return;
             }
 
             simulationThread = new Thread(() -> runSimulation(simulationType, numPassengers, numFlights));
