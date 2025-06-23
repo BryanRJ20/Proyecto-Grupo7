@@ -4,11 +4,13 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import domain.Airport;
 import domain.Flight;
+import domain.Passenger;
 import domain.Status;
 import domain.list.CircularDoublyLinkedList;
 import domain.list.DoublyLinkedList;
 import domain.list.ListException;
 import domain.list.Node;
+import domain.tree.AVLTree;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -22,6 +24,7 @@ import javafx.scene.text.Text;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import org.w3c.dom.css.CSSImportRule;
+import util.DataLoader;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -70,15 +73,19 @@ public class FlightFXController {
     private Spinner<Integer> seconds;
 
 
-    CircularDoublyLinkedList flightsList = new CircularDoublyLinkedList();
+    private CircularDoublyLinkedList flightsList = new CircularDoublyLinkedList();
+    private AVLTree passengersTree = new AVLTree();
 
     private int counterID;
 
     @FXML
     public void initialize() throws ListException, IOException {
 
+
+
         //Cargamos los vuelos desde json
         loadFlightsFromJSON();
+        loadTree();
 
 
         //Cargas los ComboBox de aeropuertos
@@ -202,14 +209,23 @@ public class FlightFXController {
 
     }
 
+    //Carga el árbol con los pasajeros del JSON
+    private void loadTree() throws IOException {passengersTree = DataLoader.loadPassengersFromJson("src/main/resources/ucr/project/passengers.json");}
+
 
     @javafx.fxml.FXML
     public void assignPassengersAction(ActionEvent actionEvent) {
 
+        Flight selectedFlight= (Flight) tvFlights.getSelectionModel().getSelectedItem();
 
+        if (selectedFlight != null) {
 
+            assignRandomPassengersToFlights(selectedFlight);
+
+        }else {util.FXUtility.showErrorAlert("Error", "No flight has been selected");}
 
     }
+
 
     @javafx.fxml.FXML
     public void createFlight(ActionEvent actionEvent) {
@@ -255,6 +271,43 @@ public class FlightFXController {
     }
 
 
+    /**
+     * Asigna pasajeros aleatorios a vuelos
+     */
+    public void assignRandomPassengersToFlights(Flight flight) {
+        try {
+            if (flightsList.isEmpty()) {
+                showInfoMessage("Alert", "⚠️ No flights available for passenger assignment");
+                return;
+            }
+
+            System.out.println("🎫 Assigning passengers to flights...");
+
+                assignPassengersToFlight(flight);
+
+
+           showInfoMessage("Success","✅ Passengers assigned to flights successfully" );
+        } catch (Exception e) {
+            showInfoMessage("Error","❌ Error assigning passengers to flights: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Asigna pasajeros a un vuelo específico
+     */
+    private void assignPassengersToFlight(Flight flight) {
+        int currentOccupancy = flight.getOccupancy();
+
+        for (int i = 0; i < currentOccupancy; i++) {
+            // Generar ID de pasajero aleatorio
+            int passengerId = 10000 + util.Utility.random(0001,9999);
+            Passenger passenger = passengersTree.search(passengerId);
+
+            if (passenger != null) {
+                passenger.addFlightToHistory(flight);
+            }
+        }
+    }
 
     public void loadFlightsFromJSON() {
         //Carga la lista desde JSON a la flightsList
