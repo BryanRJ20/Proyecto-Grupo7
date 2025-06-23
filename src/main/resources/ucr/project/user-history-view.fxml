@@ -47,27 +47,27 @@
         <!-- Filter Panel -->
         <Pane layoutX="20.0" layoutY="100.0" prefHeight="80.0" prefWidth="992.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%); -fx-background-radius: 10;">
             <children>
-                <Text layoutX="20.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter History" textFill="WHITE">
+                <Text layoutX="20.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter History" fill="WHITE">
                     <font>
                         <Font name="Serif Regular" size="18.0" />
                     </font>
                 </Text>
 
-                <Text layoutX="20.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Range:" textFill="WHITE">
+                <Text layoutX="20.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Range:" fill="WHITE">
                     <font>
                         <Font name="Serif Regular" size="14.0" />
                     </font>
                 </Text>
                 <DatePicker fx:id="fromDatePicker" layoutX="100.0" layoutY="40.0" prefHeight="25.0" prefWidth="130.0" promptText="From Date" />
 
-                <Text layoutX="250.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To:" textFill="WHITE">
+                <Text layoutX="250.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To:" fill="WHITE">
                     <font>
                         <Font name="Serif Regular" size="14.0" />
                     </font>
                 </Text>
                 <DatePicker fx:id="toDatePicker" layoutX="280.0" layoutY="40.0" prefHeight="25.0" prefWidth="130.0" promptText="To Date" />
 
-                <Text layoutX="430.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" textFill="WHITE">
+                <Text layoutX="430.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" fill="WHITE">
                     <font>
                         <Font name="Serif Regular" size="14.0" />
                     </font>
@@ -126,7 +126,7 @@
         <!-- Statistics Panel -->
         <Pane layoutX="20.0" layoutY="670.0" prefHeight="160.0" prefWidth="992.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #384463 0.0%, #343336 100.0%); -fx-background-radius: 10;">
             <children>
-                <Text layoutX="20.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Travel Statistics" textFill="WHITE">
+                <Text layoutX="20.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Travel Statistics" fill="WHITE">
                     <font>
                         <Font name="Serif Regular" size="18.0" />
                     </font>
@@ -197,7 +197,7 @@
 
                         <VBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1">
                             <children>
-                                <Label fx:id="totalSpentLabel" text="$0" textFill="WHITE">
+                                <Label fx:id="totalSpentLabel" text="0" textFill="WHITE">
                                     <font>
                                         <Font name="Serif Bold" size="20.0" />
                                     </font>
@@ -212,7 +212,7 @@
 
                         <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <children>
-                                <Label fx:id="averagePriceLabel" text="$0" textFill="WHITE">
+                                <Label fx:id="averagePriceLabel" text="0" textFill="WHITE">
                                     <font>
                                         <Font name="Serif Bold" size="20.0" />
                                     </font>

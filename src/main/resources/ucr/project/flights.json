@@ -1,92 +1,272 @@
 [
   {
+    "number": 1100,
+    "origin": "Juan Santamaría",
+    "destination": "Dubai",
+    "departureTime": "2025-06-24T16:46:45.6516055",
+    "capacity": 233,
+    "occupancy": 19,
+    "status": "SCHEDULED"
+  },
+  {
     "number": 1101,
-    "origin": "Aeropuerto Internacional Juan Santamaría",
-    "destination": "John F. Kennedy International Airport",
-    "departureTime": "2025-06-25T09:00:00",
-    "capacity": 180,
-    "occupancy": 150,
+    "origin": "JFK",
+    "destination": "Madrid Barajas",
+    "departureTime": "2025-07-07T19:46:45.6516055",
+    "capacity": 189,
+    "occupancy": 119,
     "status": "SCHEDULED"
   },
   {
     "number": 1102,
-    "origin": "London Heathrow Airport",
-    "destination": "Charles de Gaulle Airport",
-    "departureTime": "2025-06-26T14:45:00",
-    "capacity": 160,
-    "occupancy": 120,
+    "origin": "Haneda",
+    "destination": "Frankfurt",
+    "departureTime": "2025-07-07T20:46:45.6516055",
+    "capacity": 152,
+    "occupancy": 148,
     "status": "SCHEDULED"
   },
   {
     "number": 1103,
-    "origin": "Charles de Gaulle Airport",
-    "destination": "Frankfurt am Main Airport",
-    "departureTime": "2025-06-27T10:00:00",
-    "capacity": 150,
-    "occupancy": 140,
+    "origin": "Juan Santamaría",
+    "destination": "Madrid Barajas",
+    "departureTime": "2025-07-19T16:46:45.6516055",
+    "capacity": 230,
+    "occupancy": 116,
     "status": "SCHEDULED"
   },
   {
     "number": 1104,
-    "origin": "Madrid-Barajas Adolfo Suárez Airport",
-    "destination": "Tokyo Haneda Airport",
-    "departureTime": "2025-07-01T23:30:00",
-    "capacity": 200,
-    "occupancy": 190,
+    "origin": "Juan Santamaría",
+    "destination": "Frankfurt",
+    "departureTime": "2025-07-10T15:46:45.6516055",
+    "capacity": 202,
+    "occupancy": 158,
     "status": "SCHEDULED"
   },
   {
     "number": 1105,
-    "origin": "Toronto Pearson International Airport",
-    "destination": "John F. Kennedy International Airport",
-    "departureTime": "2025-06-28T08:00:00",
-    "capacity": 170,
-    "occupancy": 160,
+    "origin": "Charles de Gaulle",
+    "destination": "Madrid Barajas",
+    "departureTime": "2025-07-16T08:46:45.6516055",
+    "capacity": 233,
+    "occupancy": 83,
     "status": "SCHEDULED"
   },
   {
     "number": 1106,
-    "origin": "Aeropuerto Internacional Juan Santamaría",
-    "destination": "John F. Kennedy International Airport",
-    "departureTime": "2025-06-29T13:15:00",
-    "capacity": 180,
-    "occupancy": 155,
+    "origin": "Charles de Gaulle",
+    "destination": "Sydney",
+    "departureTime": "2025-07-05T11:46:45.6516055",
+    "capacity": 232,
+    "occupancy": 86,
     "status": "SCHEDULED"
   },
   {
     "number": 1107,
-    "origin": "São Paulo–Guarulhos International Airport",
-    "destination": "Tokyo Haneda Airport",
-    "departureTime": "2025-06-30T22:00:00",
-    "capacity": 200,
-    "occupancy": 190,
+    "origin": "Haneda",
+    "destination": "Dubai",
+    "departureTime": "2025-07-20T09:46:45.6516055",
+    "capacity": 190,
+    "occupancy": 173,
     "status": "SCHEDULED"
   },
   {
     "number": 1108,
-    "origin": "Frankfurt am Main Airport",
-    "destination": "John F. Kennedy International Airport",
-    "departureTime": "2025-07-02T07:45:00",
-    "capacity": 190,
-    "occupancy": 170,
+    "origin": "Heathrow",
+    "destination": "Madrid Barajas",
+    "departureTime": "2025-07-20T04:46:45.6516055",
+    "capacity": 186,
+    "occupancy": 109,
     "status": "SCHEDULED"
   },
   {
     "number": 1109,
-    "origin": "Sydney Kingsford Smith Airport",
-    "destination": "Tokyo Haneda Airport",
-    "departureTime": "2025-07-03T05:00:00",
-    "capacity": 180,
-    "occupancy": 165,
+    "origin": "Haneda",
+    "destination": "Toronto Pearson",
+    "departureTime": "2025-07-20T04:46:45.6516055",
+    "capacity": 224,
+    "occupancy": 158,
     "status": "SCHEDULED"
   },
   {
     "number": 1110,
-    "origin": "John F. Kennedy International Airport",
-    "destination": "London Heathrow Airport",
-    "departureTime": "2025-07-04T16:00:00",
-    "capacity": 190,
-    "occupancy": 170,
+    "origin": "Charles de Gaulle",
+    "destination": "Toronto Pearson",
+    "departureTime": "2025-07-07T02:46:45.6516055",
+    "capacity": 150,
+    "occupancy": 14,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1111,
+    "origin": "JFK",
+    "destination": "Madrid Barajas",
+    "departureTime": "2025-07-09T02:46:45.6516055",
+    "capacity": 166,
+    "occupancy": 61,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1112,
+    "origin": "Charles de Gaulle",
+    "destination": "Toronto Pearson",
+    "departureTime": "2025-06-29T14:46:45.6516055",
+    "capacity": 159,
+    "occupancy": 47,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1113,
+    "origin": "JFK",
+    "destination": "Madrid Barajas",
+    "departureTime": "2025-07-23T07:46:45.6516055",
+    "capacity": 162,
+    "occupancy": 2,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1114,
+    "origin": "Juan Santamaría",
+    "destination": "Dubai",
+    "departureTime": "2025-07-11T00:46:45.6516055",
+    "capacity": 150,
+    "occupancy": 18,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1115,
+    "origin": "Charles de Gaulle",
+    "destination": "Madrid Barajas",
+    "departureTime": "2025-07-10T01:46:45.6516055",
+    "capacity": 194,
+    "occupancy": 126,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1116,
+    "origin": "Haneda",
+    "destination": "Dubai",
+    "departureTime": "2025-07-07T10:46:45.6516055",
+    "capacity": 159,
+    "occupancy": 45,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1117,
+    "origin": "JFK",
+    "destination": "Frankfurt",
+    "departureTime": "2025-07-17T05:46:45.6516055",
+    "capacity": 183,
+    "occupancy": 61,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1118,
+    "origin": "Juan Santamaría",
+    "destination": "Toronto Pearson",
+    "departureTime": "2025-07-17T05:46:45.6516055",
+    "capacity": 189,
+    "occupancy": 182,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1119,
+    "origin": "JFK",
+    "destination": "Dubai",
+    "departureTime": "2025-07-18T15:46:45.6516055",
+    "capacity": 161,
+    "occupancy": 117,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1120,
+    "origin": "Juan Santamaría",
+    "destination": "Madrid Barajas",
+    "departureTime": "2025-07-06T21:46:45.6516055",
+    "capacity": 231,
+    "occupancy": 45,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1121,
+    "origin": "Juan Santamaría",
+    "destination": "Dubai",
+    "departureTime": "2025-07-21T04:46:45.6516055",
+    "capacity": 205,
+    "occupancy": 141,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1122,
+    "origin": "Juan Santamaría",
+    "destination": "Dubai",
+    "departureTime": "2025-07-11T02:46:45.6516055",
+    "capacity": 186,
+    "occupancy": 23,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1123,
+    "origin": "Juan Santamaría",
+    "destination": "Frankfurt",
+    "departureTime": "2025-07-11T13:46:45.6516055",
+    "capacity": 199,
+    "occupancy": 84,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1124,
+    "origin": "Charles de Gaulle",
+    "destination": "Sydney",
+    "departureTime": "2025-07-05T12:46:45.6516055",
+    "capacity": 236,
+    "occupancy": 123,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1125,
+    "origin": "Heathrow",
+    "destination": "Sydney",
+    "departureTime": "2025-07-23T02:46:45.6516055",
+    "capacity": 197,
+    "occupancy": 179,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1126,
+    "origin": "Juan Santamaría",
+    "destination": "Dubai",
+    "departureTime": "2025-06-30T19:46:45.6516055",
+    "capacity": 195,
+    "occupancy": 125,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1127,
+    "origin": "Juan Santamaría",
+    "destination": "Sydney",
+    "departureTime": "2025-07-18T17:46:45.6516055",
+    "capacity": 173,
+    "occupancy": 48,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1128,
+    "origin": "Haneda",
+    "destination": "Madrid Barajas",
+    "departureTime": "2025-07-08T17:46:45.6516055",
+    "capacity": 183,
+    "occupancy": 101,
+    "status": "SCHEDULED"
+  },
+  {
+    "number": 1129,
+    "origin": "Juan Santamaría",
+    "destination": "Sydney",
+    "departureTime": "2025-07-15T18:46:45.6516055",
+    "capacity": 235,
+    "occupancy": 197,
     "status": "SCHEDULED"
   }
 ]
