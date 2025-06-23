@@ -22,6 +22,29 @@ public class DataLoader {
     private static final Random random = new Random();
 
     /**
+     * Crea archivos JSON de ejemplo si no existen
+     */
+    public static void createSampleJsonFiles() {
+        System.out.println("🔄 Creating sample JSON files...");
+
+        // Crear aeropuertos de ejemplo
+        DoublyLinkedList airports = new DoublyLinkedList();
+        createDefaultAirports(airports);
+        saveAirportsToJson(airports, "src/main/resources/ucr/project/airports.json");
+
+        // Crear pasajeros de ejemplo
+        AVLTree passengers = new AVLTree();
+        generateDefaultPassengers(passengers);
+        savePassengersToJson(passengers, "src/main/resources/ucr/project/passengers.json");
+
+        // Crear vuelos de ejemplo
+        CircularDoublyLinkedList flights = new CircularDoublyLinkedList();
+        generateDefaultFlights(flights, "src/main/resources/ucr/project/flights.json");
+
+        System.out.println("✅ Sample JSON files created successfully");
+    }
+
+    /**
      * Carga aeropuertos desde archivo JSON
      */
     public static DoublyLinkedList loadAirportsFromJson(String filePath) {
