@@ -2,8 +2,8 @@ package domain.list;
 
 public class CircularDoublyLinkedList implements List{
 
-    private Node first; //apuntador al inicio de la lista
-    private Node last; //apuntador al ultimo nodo de la lista
+    public Node first; //apuntador al inicio de la lista
+    public Node last; //apuntador al ultimo nodo de la lista
 
     //Constructor
     public CircularDoublyLinkedList(){

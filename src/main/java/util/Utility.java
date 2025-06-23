@@ -9,6 +9,8 @@ import java.text.CollationKey;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Random;
 import java.util.Calendar;
@@ -447,6 +449,27 @@ public class Utility {
             return true;
         } catch (NumberFormatException e) {
             return false;
+        }
+    }
+
+    public static boolean isDate(String dateStr) {
+        // Verifica si el string de fecha tiene el formato ##/##/##
+        if (dateStr == null || dateStr.isEmpty()) {
+            return false;
+        }
+
+        // Verificar el patrón ##/##/##
+        if (!dateStr.matches("\\d{2}/\\d{2}/\\d{2}")) {
+            return false;
+        }
+
+        // Intentar parse para validar que sea una fecha real
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+            LocalDate.parse(dateStr, formatter);
+            return true;
+        } catch (Exception e) {
+            return false; // Fecha con formato correcto pero inválida (como 31/02/25)
         }
     }
 

@@ -3,6 +3,7 @@ module ucr.project {
     requires javafx.fxml;
     requires com.google.gson;
     requires java.desktop;
+    requires jdk.xml.dom;
 
     // Exports principales
     exports domain;

@@ -142,7 +142,7 @@ public class PassengersController {
     }
 
     //Carga el árbol con los pasajeros del JSON
-   private void loadTree() throws IOException {passengersTree = DataLoader.loadPassengersFromJsonAlternativo("src/main/resources/ucr/project/passengers.json");}
+   private void loadTree() throws IOException {passengersTree = DataLoader.loadPassengersFromJson("src/main/resources/ucr/project/passengers.json");}
 
     //PARA AGREGAR AL JSON
     private void addAirportToJson(Passenger newPassenger) {
@@ -206,7 +206,7 @@ public class PassengersController {
         Collections.sort(nations);
 
         nationBox.getItems().clear();  // Limpia elementos previos
-        nationBox.getItems().addAll(nations);  // Agrega la lista de países
+        nationBox.getItems().addAll(nations);  // Agrega la lista
     }
 
 

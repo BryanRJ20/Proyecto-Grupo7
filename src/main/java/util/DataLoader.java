@@ -73,66 +73,6 @@ public class DataLoader {
         return passengersTree;
     }
 
-    public static AVLTree loadPassengersFromJsonAlternativo(String filePath) throws IOException {
-        AVLTree passengersTree = new AVLTree();
-        File file = new File(filePath);
-
-        // Verificar si el archivo existe
-        if (!file.exists()) {
-            System.err.println("❌ Error: El archivo no existe: " + file.getAbsolutePath());
-            System.out.println("🔄 Generando pasajeros predeterminados...");
-            generateDefaultPassengers(passengersTree);
-            return passengersTree;
-        }
-
-        // Verificar si se puede leer el archivo
-        if (!file.canRead()) {
-            System.err.println("❌ Error: No se puede leer el archivo: " + file.getAbsolutePath());
-            System.out.println("🔄 Generando pasajeros predeterminados...");
-            generateDefaultPassengers(passengersTree);
-            return passengersTree;
-        }
-
-        try (FileReader reader = new FileReader(file)) {
-            // Crear instancia de Gson con configuración adecuada
-            Gson gson = new GsonBuilder()
-                    .setPrettyPrinting()
-                    .create();
-
-            Type listType = new TypeToken<List<Passenger>>(){}.getType();
-            List<Passenger> passengers = gson.fromJson(reader, listType);
-
-            if (passengers != null) {
-                System.out.println("✓ JSON parseado correctamente, encontrados " + passengers.size() + " pasajeros");
-                for (Passenger passenger : passengers) {
-                    passengersTree.insert(passenger);
-                }
-                System.out.println("✅ Cargados " + passengers.size() + " pasajeros desde " + filePath);
-            } else {
-                System.err.println("⚠️ No se encontraron pasajeros en el archivo (null)");
-                System.out.println("🔄 Generando pasajeros predeterminados...");
-                generateDefaultPassengers(passengersTree);
-            }
-        } catch (FileNotFoundException e) {
-            System.err.println("❌ Error: Archivo no encontrado: " + file.getAbsolutePath());
-            System.err.println("Detalles: " + e.getMessage());
-            System.out.println("🔄 Generando pasajeros predeterminados...");
-            generateDefaultPassengers(passengersTree);
-        } catch (JsonParseException e) {
-            System.err.println("❌ Error: Formato JSON inválido en el archivo: " + file.getAbsolutePath());
-            System.err.println("Detalles: " + e.getMessage());
-            System.out.println("🔄 Generando pasajeros predeterminados...");
-            generateDefaultPassengers(passengersTree);
-        } catch (Exception e) {
-            System.err.println("❌ Error inesperado al cargar pasajeros: " + e.getClass().getName());
-            System.err.println("Detalles: " + e.getMessage());
-            e.printStackTrace();
-            System.out.println("🔄 Generando pasajeros predeterminados...");
-            generateDefaultPassengers(passengersTree);
-        }
-
-        return passengersTree;
-    }
 
     /**
      * Guarda aeropuertos en archivo JSON
