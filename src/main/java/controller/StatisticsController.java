@@ -32,6 +32,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Text;
+import com.itextpdf.layout.properties.TextAlignment;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.io.font.constants.StandardFonts;
+
 public class StatisticsController {
 
     @FXML
@@ -178,19 +188,136 @@ public class StatisticsController {
             if (selectedDirectory != null) {
                 String reportType = reportTypeBox.getValue().replace(" ", "_");
                 String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-                String fileName = "Airport_Statistics_" + reportType + "_" + timestamp + ".txt";
+                String fileName = "Airport_Statistics_" + reportType + "_" + timestamp + ".pdf";
 
                 File file = new File(selectedDirectory, fileName);
 
-                try (FileWriter writer = new FileWriter(file)) {
-                    writer.write(reportArea.getText());
-                }
+                // Generar el contenido del reporte primero
+                String reportContent = generateSelectedReport(reportTypeBox.getValue());
+
+                // Generar PDF con el contenido
+                generatePdfReport(file, reportContent, reportType);
 
                 showInfo("Report exported successfully to: " + file.getAbsolutePath());
             }
         } catch (Exception e) {
             showError("Error exporting report: " + e.getMessage());
+            e.printStackTrace(); // Para debugging
         }
+    }
+
+    private void generatePdfReport(File file, String reportContent, String reportType) throws Exception {
+        // Crear el documento PDF
+        PdfWriter writer = new PdfWriter(file.getAbsolutePath());
+        PdfDocument pdf = new PdfDocument(writer);
+        Document document = new Document(pdf);
+
+        // Configurar fuentes
+        PdfFont titleFont = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
+        PdfFont bodyFont = PdfFontFactory.createFont(StandardFonts.HELVETICA);
+        PdfFont subtitleFont = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
+
+        // Título principal
+        Text titleText = new Text("AIRPORT MANAGEMENT SYSTEM")
+                .setFont(titleFont)
+                .setFontSize(18);
+        Paragraph title = new Paragraph(titleText)
+                .setTextAlignment(TextAlignment.CENTER)
+                .setMarginBottom(10);
+        document.add(title);
+
+        // Subtítulo con tipo de reporte
+        Text subtitleText = new Text(reportType.replace("_", " ").toUpperCase())
+                .setFont(titleFont)
+                .setFontSize(14);
+        Paragraph subtitle = new Paragraph(subtitleText)
+                .setTextAlignment(TextAlignment.CENTER)
+                .setMarginBottom(20);
+        document.add(subtitle);
+
+        // Fecha de generación
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        Text dateText = new Text("Generated on: " + timestamp)
+                .setFont(bodyFont)
+                .setFontSize(10);
+        Paragraph date = new Paragraph(dateText)
+                .setTextAlignment(TextAlignment.CENTER)
+                .setMarginBottom(30);
+        document.add(date);
+
+        // Verificar si hay contenido
+        if (reportContent == null || reportContent.trim().isEmpty()) {
+            Paragraph noContent = new Paragraph("No data available for this report.")
+                    .setFont(bodyFont)
+                    .setFontSize(12)
+                    .setTextAlignment(TextAlignment.CENTER);
+            document.add(noContent);
+        } else {
+            // Procesar el contenido línea por línea
+            String[] lines = reportContent.split("\n");
+
+            for (String line : lines) {
+                line = line.trim();
+
+                // Saltar líneas vacías (pero agregar espacio)
+                if (line.isEmpty()) {
+                    document.add(new Paragraph(" ").setMarginBottom(5));
+                    continue;
+                }
+
+                // Saltar líneas de separación con = o -
+                if (line.matches("^[=\\-]+$")) {
+                    continue;
+                }
+
+                // Detectar títulos principales (todas mayúsculas y sin : al final)
+                if (line.toUpperCase().equals(line) &&
+                        line.length() > 5 &&
+                        !line.endsWith(":") &&
+                        !line.contains("Generated on:")) {
+
+                    Text headerText = new Text(line)
+                            .setFont(subtitleFont)
+                            .setFontSize(12);
+                    Paragraph header = new Paragraph(headerText)
+                            .setMarginTop(15)
+                            .setMarginBottom(8);
+                    document.add(header);
+                }
+                // Detectar subtítulos (terminan con :)
+                else if (line.endsWith(":")) {
+                    Text subheaderText = new Text(line)
+                            .setFont(subtitleFont)
+                            .setFontSize(11);
+                    Paragraph subheader = new Paragraph(subheaderText)
+                            .setMarginTop(10)
+                            .setMarginBottom(5);
+                    document.add(subheader);
+                }
+                // Contenido normal
+                else {
+                    Text contentText = new Text(line)
+                            .setFont(bodyFont)
+                            .setFontSize(10);
+                    Paragraph content = new Paragraph(contentText)
+                            .setMarginBottom(3)
+                            .setMarginLeft(10); // Indentar contenido
+                    document.add(content);
+                }
+            }
+        }
+
+        // Pie de página
+        Text footerText = new Text("Report generated by Airport Management System v1.0")
+                .setFont(bodyFont)
+                .setFontSize(8);
+        Paragraph footer = new Paragraph(footerText)
+                .setTextAlignment(TextAlignment.CENTER)
+                .setMarginTop(30);
+        document.add(footer);
+
+        // Cerrar el documento
+        document.close();
     }
 
     @FXML

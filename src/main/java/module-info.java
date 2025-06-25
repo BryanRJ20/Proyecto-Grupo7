@@ -4,6 +4,9 @@ module ucr.project {
     requires com.google.gson;
     requires java.desktop;
     requires jdk.xml.dom;
+    requires layout;
+    requires kernel;
+    requires io;
 
     // Exports principales
     exports domain;
