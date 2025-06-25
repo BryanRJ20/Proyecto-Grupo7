@@ -1,4 +1,4 @@
-package test;
+package ucr.project;
 
 import domain.*;
 import domain.graph.DijkstraAirportGraph;
