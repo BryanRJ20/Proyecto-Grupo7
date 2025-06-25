@@ -730,10 +730,41 @@ public class StatisticsController {
         stats.put("averageOccupancy", averageOccupancyLabel.getText());
         systemData.put("generalStatistics", stats);
 
-        // Agregar estadísticas de aeropuertos
-        systemData.put("topAirports", calculateAirportStatistics());
-        systemData.put("topRoutes", calculateRouteStatistics());
-        systemData.put("topPassengers", calculatePassengerStatistics());
+        // Convertir estadísticas de aeropuertos a Maps
+        List<Map<String, Object>> airportStatsMaps = new ArrayList<>();
+        List<AirportStatistic> airportStats = calculateAirportStatistics();
+        for (AirportStatistic stat : airportStats) {
+            Map<String, Object> airportMap = new HashMap<>();
+            airportMap.put("airportName", stat.getAirportName());
+            airportMap.put("flightCount", stat.getFlightCount());
+            airportMap.put("averageOccupancy", stat.getAverageOccupancy());
+            airportStatsMaps.add(airportMap);
+        }
+        systemData.put("topAirports", airportStatsMaps);
+
+        // Convertir estadísticas de rutas a Maps
+        List<Map<String, Object>> routeStatsMaps = new ArrayList<>();
+        List<RouteStatistic> routeStats = calculateRouteStatistics();
+        for (RouteStatistic stat : routeStats) {
+            Map<String, Object> routeMap = new HashMap<>();
+            routeMap.put("route", stat.getRoute());
+            routeMap.put("usageCount", stat.getUsageCount());
+            routeMap.put("distance", stat.getDistance());
+            routeStatsMaps.add(routeMap);
+        }
+        systemData.put("topRoutes", routeStatsMaps);
+
+        // Convertir estadísticas de pasajeros a Maps
+        List<Map<String, Object>> passengerStatsMaps = new ArrayList<>();
+        List<PassengerStatistic> passengerStats = calculatePassengerStatistics();
+        for (PassengerStatistic stat : passengerStats) {
+            Map<String, Object> passengerMap = new HashMap<>();
+            passengerMap.put("passengerName", stat.getPassengerName());
+            passengerMap.put("flightsCount", stat.getFlightsCount());
+            passengerMap.put("nationality", stat.getNationality());
+            passengerStatsMaps.add(passengerMap);
+        }
+        systemData.put("topPassengers", passengerStatsMaps);
 
         // Escribir JSON
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
