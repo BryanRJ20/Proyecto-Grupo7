@@ -92,6 +92,7 @@
                             </children>
                         </HBox>
 
+                        <Button fx:id="btnRegister" onAction="#handleRegister" styleClass="secondary-button" text="Crear Usuario" />
                         <!-- Información de usuarios por defecto -->
                         <Separator />
                         <VBox spacing="5.0">

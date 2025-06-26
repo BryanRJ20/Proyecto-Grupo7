@@ -35,6 +35,9 @@ public class LoginController {
     @FXML
     private Button btnClear;
 
+    @FXML
+    private Button btnRegister;
+
     private AuthenticationService authService;
 
     @FXML
@@ -97,6 +100,31 @@ public class LoginController {
         txtPassword.clear();
         hideError();
         txtUsername.requestFocus();
+    }
+
+    @FXML
+    private void handleRegister(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("register-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            // Crear nueva ventana para registro
+            Stage registerStage = new Stage();
+            registerStage.setTitle("Registro de Usuario");
+            registerStage.setScene(scene);
+            registerStage.setResizable(false);
+            registerStage.centerOnScreen();
+
+            // Hacer modal (bloquea la ventana principal)
+            registerStage.initModality(javafx.stage.Modality.APPLICATION_MODAL);
+            registerStage.initOwner(btnLogin.getScene().getWindow());
+
+            registerStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            FXUtility.showErrorAlert("Error", "No se pudo cargar la ventana de registro: " + e.getMessage());
+        }
     }
 
     private void showError(String message) {
